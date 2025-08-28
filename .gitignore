@@ -2,3 +2,11 @@
 /.idea/.idea.Attempt 4279/.idea/encodings.xml
 /.idea/.idea.Attempt 4279/.idea/indexLayout.xml
 /.idea/.idea.Attempt 4279/.idea/vcs.xml
+/Library*
+/Logs*
+/obj/Debug*
+/Temp*
+/UserSettings*
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj
+Attempt 4279.sln

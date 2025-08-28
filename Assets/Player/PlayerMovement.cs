@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Threading.Tasks;
 using Movements;
 using UnityEngine;
 
@@ -47,23 +47,21 @@ namespace Player
         {
             if (_isAttacking) return;
 
-            _isAttacking = true;
-            StartCoroutine(AttackSequence());
+            TaskHelper.Run(StartAttack(), EndAttack);
         }
 
-        private IEnumerator AttackSequence()
+        private async Task StartAttack()
         {
+            _isAttacking = true;
+
             var firstPosition = transform.position + transform.forward;
             var secondPosition = transform.position;
 
-            yield return WaitForMovement(firstPosition);
-            yield return WaitForMovement(secondPosition);
-
-            _isAttacking = false;
-            ServiceLocator<PlayerController>.Service.EndAttack();
+            await WaitForMovement(firstPosition);
+            await WaitForMovement(secondPosition);
         }
 
-        private IEnumerator WaitForMovement(Vector3 firstPosition)
+        private async Task WaitForMovement(Vector3 firstPosition)
         {
             while (true)
             {
@@ -73,8 +71,14 @@ namespace Player
                 offset = offset.normalized * ServiceLocator<PlayerAttributes>.Service.attackSpeed;
                 _movement.Move(offset * Time.deltaTime);
 
-                yield return new WaitForEndOfFrame();
+                await Task.Delay(1);
             }
+        }
+
+        private void EndAttack()
+        {
+            _isAttacking = false;
+            ServiceLocator<PlayerController>.Service.EndAttack();
         }
 
         private Vector3 GetMoveInputValue()

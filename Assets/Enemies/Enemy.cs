@@ -6,13 +6,20 @@ namespace Enemies
 {
     public class Enemy : MonoBehaviour
     {
+        private const int MaxHealth = 3;
         private const float MovementSpeed = 4.0f;
+
         [SerializeField] private CharacterController characterController;
+        private int _currentHealth;
         private bool _isBeingAttacked;
 
         private Movement _movement;
         private bool _wasAttacked;
-        private int health = 3;
+
+        private void Awake()
+        {
+            _currentHealth = MaxHealth;
+        }
 
         private void Start()
         {
@@ -57,8 +64,8 @@ namespace Enemies
         private void EndAttacked()
         {
             _isBeingAttacked = false;
-            health--;
-            if (health <= 0) Destroy(gameObject);
+            _currentHealth--;
+            if (_currentHealth <= 0) Destroy(gameObject);
         }
     }
 }

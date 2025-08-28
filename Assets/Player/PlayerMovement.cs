@@ -19,7 +19,7 @@ namespace Player
 
             ServiceLocator<InputHandler>.Service.MoveAction += OnMove;
             ServiceLocator<InputHandler>.Service.JumpActionTriggered += OnJumpTriggered;
-            ServiceLocator<PlayerController>.Service.AttackStarted += OnAttackStarted;
+            // ServiceLocator<PlayerController>.Service.AttackStarted += OnAttackStarted;
         }
 
         private void Update()

@@ -1,0 +1,21 @@
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class Boot : MonoBehaviour
+{
+    private void Start()
+    {
+        SetUpServices();
+        LoadMainSceneAsync().Forget();
+    }
+
+    private static void SetUpServices()
+    {
+    }
+
+    private static async Task LoadMainSceneAsync()
+    {
+        await SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
+    }
+}

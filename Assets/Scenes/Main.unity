@@ -2251,7 +2251,7 @@ GameObject:
   - component: {fileID: 1824544031}
   - component: {fileID: 1824544030}
   - component: {fileID: 1824544029}
-  - component: {fileID: 1824544028}
+  - component: {fileID: 1824544037}
   - component: {fileID: 1824544027}
   - component: {fileID: 1824544026}
   - component: {fileID: 1824544025}
@@ -2434,19 +2434,6 @@ MonoBehaviour:
   camera: {fileID: 90336258}
   verticalDistance: 10
   horizontalDistance: 10
---- !u!114 &1824544028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824544023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6080e87be78ef774aa5e7c201dbaf744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attributes: {fileID: 11400000, guid: 096047985b1c3da48ba6dcdfacf6903e, type: 2}
 --- !u!65 &1824544029
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2583,6 +2570,19 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
+--- !u!114 &1824544037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824544023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 006f3144e3984f4ca35d1a25b4218b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributes: {fileID: 11400000, guid: 096047985b1c3da48ba6dcdfacf6903e, type: 2}
 --- !u!4 &1955780365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 57102461636317250, guid: 2408730ee96a19b4fab334a2c666f21d, type: 3}

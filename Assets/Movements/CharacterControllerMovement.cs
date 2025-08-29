@@ -2,12 +2,12 @@
 
 namespace Movements
 {
-    public class Movement
+    public class CharacterControllerMovement : IMovement
     {
         private readonly CharacterController _characterController;
         private Vector3 _playerVelocity;
 
-        public Movement(CharacterController characterController)
+        public CharacterControllerMovement(CharacterController characterController)
         {
             _characterController = characterController;
         }
@@ -33,11 +33,11 @@ namespace Movements
             _playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         }
 
-        public void UpdatePosition(Vector3 position = default, float movementSpeed = default)
+        public void UpdatePosition(Vector3 direction = default, float movementSpeed = default)
         {
-            var direction = position * movementSpeed
-                            + _playerVelocity.y * Vector3.up;
-            var finalPosition = direction * Time.deltaTime;
+            var newDirection = direction * movementSpeed
+                               + _playerVelocity.y * Vector3.up;
+            var finalPosition = newDirection * Time.deltaTime;
 
             Move(finalPosition);
         }

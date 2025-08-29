@@ -20,7 +20,7 @@ namespace Player
             var enemy = hit.transform.GetComponent<Enemy>();
             if (enemy == null) return;
 
-            enemy.OnAttacked(transform.position);
+            enemy.OnAttacked();
         }
 
         private void OnAttackStarted()

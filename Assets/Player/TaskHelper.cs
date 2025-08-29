@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Player
 {
@@ -16,9 +17,13 @@ namespace Player
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
+                    Debug.Log(e);
                     throw;
                 }
+            }).ContinueWith(t =>
+            {
+                if (!t.IsFaulted) return;
+                if (t.Exception != null) throw t.Exception;
             });
         }
     }

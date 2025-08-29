@@ -1,25 +1,25 @@
-using System.Threading.Tasks;
 using Movements;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] private CharacterController characterController;
         private bool _isAttacking;
         private bool _jumpWasTriggered;
         private Vector2 _moveInput;
 
-        private Movement _movement;
+        private IMovement _movement;
 
         private void Start()
         {
-            _movement = new Movement(characterController);
+            _movement = new NavMeshAgentMovement(GetComponent<NavMeshAgent>());
+            // _movement = new CharacterControllerMovement(GetComponent<CharacterController>());
+            // _movement = new RigidbodyMovement(GetComponent<Rigidbody>());
 
             ServiceLocator<InputHandler>.Service.MoveAction += OnMove;
             ServiceLocator<InputHandler>.Service.JumpActionTriggered += OnJumpTriggered;
-            // ServiceLocator<PlayerController>.Service.AttackStarted += OnAttackStarted;
         }
 
         private void Update()
@@ -41,44 +41,6 @@ namespace Player
         private void OnMove(Vector2 moveInput)
         {
             _moveInput = moveInput;
-        }
-
-        private void OnAttackStarted()
-        {
-            if (_isAttacking) return;
-
-            TaskHelper.Run(StartAttack(), EndAttack);
-        }
-
-        private async Task StartAttack()
-        {
-            _isAttacking = true;
-
-            var firstPosition = transform.position + transform.forward;
-            var secondPosition = transform.position;
-
-            await WaitForMovement(firstPosition);
-            await WaitForMovement(secondPosition);
-        }
-
-        private async Task WaitForMovement(Vector3 firstPosition)
-        {
-            while (true)
-            {
-                var offset = firstPosition - transform.position;
-                if (offset.magnitude < 0.2f) break;
-
-                offset = offset.normalized * ServiceLocator<PlayerAttributes>.Service.attackSpeed;
-                _movement.Move(offset * Time.deltaTime);
-
-                await Task.Delay(1);
-            }
-        }
-
-        private void EndAttack()
-        {
-            _isAttacking = false;
-            ServiceLocator<PlayerController>.Service.EndAttack();
         }
 
         private Vector3 GetMoveInputValue()
@@ -104,6 +66,8 @@ namespace Player
         private void Move()
         {
             var move = GetMoveInputValue();
+            if (move == Vector3.zero) return;
+
             var playerMovementSpeed = ServiceLocator<PlayerAttributes>.Service.movementSpeed;
             _movement.UpdatePosition(move, playerMovementSpeed);
         }

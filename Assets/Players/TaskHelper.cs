@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Player
+namespace Players
 {
     public class TaskHelper
     {

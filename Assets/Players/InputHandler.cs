@@ -1,8 +1,9 @@
 ﻿using System;
+using Commons;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace Players
 {
     public class InputHandler : MonoBehaviour
     {

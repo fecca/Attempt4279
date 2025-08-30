@@ -1,7 +1,8 @@
-﻿using Enemies;
+﻿using Commons;
+using Enemies;
 using UnityEngine;
 
-namespace Player
+namespace Players
 {
     public class PlayerCollision : MonoBehaviour
     {
@@ -13,11 +14,11 @@ namespace Player
             ServiceLocator<PlayerController>.Service.AttackEnded += OnAttackEnded;
         }
 
-        public void OnControllerColliderHit(ControllerColliderHit hit)
+        private void OnCollisionEnter(Collision other)
         {
             if (!_isEnabled) return;
 
-            var enemy = hit.transform.GetComponent<Enemy>();
+            var enemy = other.transform.GetComponent<Enemy>();
             if (enemy == null) return;
 
             enemy.OnAttacked();

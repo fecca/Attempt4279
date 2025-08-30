@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Player
+namespace Players
 {
     [CreateAssetMenu(menuName = "ScriptableObject/PlayerAttributes")]
     public class PlayerAttributes : ScriptableObject

@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
+using Commons;
 using UnityEngine;
 
-namespace Player
+namespace Players
 {
     public class PlayerAttackSkill
     {

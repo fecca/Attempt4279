@@ -1,8 +1,9 @@
+using Commons;
 using Movements;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Player
+namespace Players
 {
     public class PlayerMovement : MonoBehaviour
     {
@@ -15,8 +16,6 @@ namespace Player
         private void Start()
         {
             _movement = new NavMeshAgentMovement(GetComponent<NavMeshAgent>());
-            // _movement = new CharacterControllerMovement(GetComponent<CharacterController>());
-            // _movement = new RigidbodyMovement(GetComponent<Rigidbody>());
 
             ServiceLocator<InputHandler>.Service.MoveAction += OnMove;
             ServiceLocator<InputHandler>.Service.JumpActionTriggered += OnJumpTriggered;
@@ -66,8 +65,6 @@ namespace Player
         private void Move()
         {
             var move = GetMoveInputValue();
-            if (move == Vector3.zero) return;
-
             var playerMovementSpeed = ServiceLocator<PlayerAttributes>.Service.movementSpeed;
             _movement.UpdatePosition(move, playerMovementSpeed);
         }

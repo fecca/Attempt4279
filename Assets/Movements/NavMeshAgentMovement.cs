@@ -18,7 +18,7 @@ namespace Movements
 
         public bool CanJump()
         {
-            return true;
+            return false;
         }
 
         public void Jump(float jumpStrength)
@@ -31,14 +31,19 @@ namespace Movements
 
         public void UpdatePosition(Vector3 direction = default, float movementSpeed = default)
         {
-            _agent.speed = movementSpeed;
-            Move(direction);
-        }
+            if (direction == default)
+            {
+                _agent.destination = _agent.transform.position;
+                return;
+            }
 
-        public void Move(Vector3 direction)
-        {
-            _agent.Move(direction * Time.deltaTime * _agent.speed);
-            _agent.destination = _agent.transform.position + direction;
+            var ray = new Ray(_agent.transform.position + Vector3.up * 5.0f + direction, Vector3.down * 10);
+            Debug.DrawRay(ray.origin, ray.direction * 10, Color.green, 0.1f);
+
+            if (!Physics.Raycast(ray, out var hitInfo, 10.0f, LayerMask.GetMask("Ground"))) return;
+
+            _agent.speed = movementSpeed;
+            _agent.destination = hitInfo.point;
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Commons;
+using UnityEngine;
 
-namespace Player
+namespace Players
 {
     public class PlayerCamera : MonoBehaviour
     {

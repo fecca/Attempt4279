@@ -43,8 +43,9 @@ namespace Players
         private void Move()
         {
             var move = GetMoveInputValue();
+            var position = transform.position + Vector3.up * 5.0f + move;
             var playerMovementSpeed = ServiceLocator<PlayerAttributes>.Service.movementSpeed;
-            _movement.Move(move, playerMovementSpeed);
+            _movement.Move(position, playerMovementSpeed);
         }
     }
 }

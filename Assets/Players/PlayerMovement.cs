@@ -8,7 +8,6 @@ namespace Players
     public class PlayerMovement : MonoBehaviour
     {
         private bool _isAttacking;
-        private bool _jumpWasTriggered;
         private Vector2 _moveInput;
 
         private IMovement _movement;
@@ -18,23 +17,13 @@ namespace Players
             _movement = new NavMeshAgentMovement(GetComponent<NavMeshAgent>());
 
             ServiceLocator<InputHandler>.Service.MoveAction += OnMove;
-            ServiceLocator<InputHandler>.Service.JumpActionTriggered += OnJumpTriggered;
         }
 
         private void Update()
         {
             if (_isAttacking) return;
 
-            _movement.ResetVelocityY();
-            if (ShouldJump())
-                Jump();
-            _movement.ApplyGravity();
             Move();
-        }
-
-        private void OnJumpTriggered()
-        {
-            _jumpWasTriggered = true;
         }
 
         private void OnMove(Vector2 moveInput)
@@ -51,22 +40,11 @@ namespace Players
             return moveVector;
         }
 
-        private bool ShouldJump()
-        {
-            return _jumpWasTriggered && _movement.CanJump();
-        }
-
-        private void Jump()
-        {
-            _movement.Jump(ServiceLocator<PlayerAttributes>.Service.jumpStrength);
-            _jumpWasTriggered = false;
-        }
-
         private void Move()
         {
             var move = GetMoveInputValue();
             var playerMovementSpeed = ServiceLocator<PlayerAttributes>.Service.movementSpeed;
-            _movement.UpdatePosition(move, playerMovementSpeed);
+            _movement.Move(move, playerMovementSpeed);
         }
     }
 }

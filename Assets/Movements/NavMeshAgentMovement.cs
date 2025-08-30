@@ -12,24 +12,7 @@ namespace Movements
             _agent = agent;
         }
 
-        public void ResetVelocityY()
-        {
-        }
-
-        public bool CanJump()
-        {
-            return false;
-        }
-
-        public void Jump(float jumpStrength)
-        {
-        }
-
-        public void ApplyGravity()
-        {
-        }
-
-        public void UpdatePosition(Vector3 direction = default, float movementSpeed = default)
+        public void Move(Vector3 direction = default, float movementSpeed = default)
         {
             if (direction == default)
             {
@@ -37,6 +20,7 @@ namespace Movements
                 return;
             }
 
+            // ToDo: raycast from up+5 causes attempted movement to higher ground by sliding and walking around
             var ray = new Ray(_agent.transform.position + Vector3.up * 5.0f + direction, Vector3.down * 10);
             Debug.DrawRay(ray.origin, ray.direction * 10, Color.green, 0.1f);
 

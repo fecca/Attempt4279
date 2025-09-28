@@ -15,12 +15,18 @@ namespace Interactables
         }
 
         public Vector3 GetPosition()
-            => transform.position;
+        {
+            return transform.position;
+        }
 
         public void Highlight()
-            => transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+        {
+            transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+        }
 
         public void Unhighlight()
-            => transform.localScale = new Vector3(1, 1, 1);
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 }

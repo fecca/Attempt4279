@@ -7,10 +7,10 @@ namespace Players
 {
     public class InputHandler : MonoBehaviour
     {
-        private InputAction _moveAction;
+        private InputAction _attackAction;
         private InputAction _interactAction;
         private InputAction _jumpAction;
-        private InputAction _attackAction;
+        private InputAction _moveAction;
 
         private void Awake()
         {

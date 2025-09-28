@@ -16,20 +16,26 @@ namespace Players
         private SphereCollider _collider;
 
         private void Awake()
-            => _collider = GetComponent<SphereCollider>();
+        {
+            _collider = GetComponent<SphereCollider>();
+        }
 
         private void Start()
         {
             ServiceLocator<InputHandler>.Service.InteractActionTriggered += OnInteraction;
         }
 
-        private void OnInteraction()
+        private void FixedUpdate()
         {
-            if (_closestInteractable == null) return;
+            _collider.radius = sphereRadius;
 
-            _closestInteractable.Interact();
-            _interactables.Remove(_closestInteractable);
-            _closestInteractable = null;
+            if (!_interactables.Any()) return;
+            var closestInteractable = GetClosestInteractable();
+            if (closestInteractable == _closestInteractable) return;
+
+            _closestInteractable?.Unhighlight();
+            _closestInteractable = closestInteractable;
+            _closestInteractable.Highlight();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -54,17 +60,13 @@ namespace Players
             _closestInteractable = null;
         }
 
-        private void FixedUpdate()
+        private void OnInteraction()
         {
-            _collider.radius = sphereRadius;
+            if (_closestInteractable == null) return;
 
-            if (!_interactables.Any()) return;
-            var closestInteractable = GetClosestInteractable();
-            if (closestInteractable == _closestInteractable) return;
-
-            _closestInteractable?.Unhighlight();
-            _closestInteractable = closestInteractable;
-            _closestInteractable.Highlight();
+            _closestInteractable.Interact();
+            _interactables.Remove(_closestInteractable);
+            _closestInteractable = null;
         }
 
         private IInteractable GetClosestInteractable()
@@ -76,6 +78,8 @@ namespace Players
         }
 
         private float GetDistanceToInteractable(IInteractable interactable)
-            => Vector3.Distance(interactable.GetPosition(), transform.position);
+        {
+            return Vector3.Distance(interactable.GetPosition(), transform.position);
+        }
     }
 }

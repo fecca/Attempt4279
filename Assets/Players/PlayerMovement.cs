@@ -1,28 +1,17 @@
 using Commons;
 using Movements;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 namespace Players
 {
     public class PlayerMovement : MonoBehaviour
     {
+        public InputActionReference moveAction; // expects Vector2
         private bool _isAttacking;
         private Vector2 _moveInput;
-        public InputActionReference moveAction; // expects Vector2
 
         private IMovement _movement;
-
-        private void OnEnable()
-        {
-            moveAction.action.Enable();
-        }
-
-        private void OnDisable()
-        {
-            moveAction.action.Disable();
-        }
 
         private void Start()
         {
@@ -37,6 +26,16 @@ namespace Players
             if (_isAttacking) return;
 
             Move();
+        }
+
+        private void OnEnable()
+        {
+            moveAction.action.Enable();
+        }
+
+        private void OnDisable()
+        {
+            moveAction.action.Disable();
         }
 
         private void OnMove(Vector2 moveInput)

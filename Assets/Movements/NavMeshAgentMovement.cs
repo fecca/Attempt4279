@@ -7,14 +7,16 @@ namespace Movements
     {
         private readonly NavMeshAgent _agent;
 
-        public bool IsMoving()
-            => _agent.pathPending
-               || _agent.remainingDistance > _agent.stoppingDistance
-               || _agent.hasPath && _agent.velocity.sqrMagnitude != 0f;
-
         public NavMeshAgentMovement(NavMeshAgent agent)
         {
             _agent = agent;
+        }
+
+        public bool IsMoving()
+        {
+            return _agent.pathPending
+                   || _agent.remainingDistance > _agent.stoppingDistance
+                   || (_agent.hasPath && _agent.velocity.sqrMagnitude != 0f);
         }
 
         public void Move(Vector3 position = default, float movementSpeed = 1)

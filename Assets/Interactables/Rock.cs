@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Interactables
 {
-    public class Tree : MonoBehaviour, IInteractable
+    public class Rock : MonoBehaviour, IInteractable
     {
-        private static readonly Item Item = new("Wood", 1);
+        private static readonly Item Item = new("Stone", 2);
         private Vector3 _originalScale;
 
         private void Awake()
@@ -15,10 +15,7 @@ namespace Interactables
 
         public IInteractionAction Interact()
         {
-            GetComponent<Rigidbody>().isKinematic = false;
-            GetComponent<Rigidbody>().useGravity = true;
-            GetComponent<Rigidbody>().AddForce(Vector3.one, ForceMode.Impulse);
-            transform.localScale = _originalScale;
+            transform.localScale = _originalScale * 0.25f;
             Destroy(this);
 
             return new ItemInteractionAction(Item);

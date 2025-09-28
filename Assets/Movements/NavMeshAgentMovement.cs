@@ -27,7 +27,6 @@ namespace Movements
                 return;
             }
 
-            // ToDo: raycast from up+5 causes attempted movement to higher ground by sliding and walking around
             var ray = new Ray(position, Vector3.down * 10);
             Debug.DrawRay(ray.origin, ray.direction * 10, Color.green, 0.1f);
 

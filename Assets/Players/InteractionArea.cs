@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Commons;
 using Interactables;
 using UnityEngine;
 
@@ -18,11 +17,6 @@ namespace Players
         private void Awake()
         {
             _collider = GetComponent<SphereCollider>();
-        }
-
-        private void Start()
-        {
-            ServiceLocator<InputHandler>.Service.InteractActionTriggered += OnInteraction;
         }
 
         private void FixedUpdate()
@@ -60,15 +54,6 @@ namespace Players
             _closestInteractable = null;
         }
 
-        private void OnInteraction()
-        {
-            if (_closestInteractable == null) return;
-
-            _closestInteractable.Interact();
-            _interactables.Remove(_closestInteractable);
-            _closestInteractable = null;
-        }
-
         private IInteractable GetClosestInteractable()
         {
             return _interactables.Aggregate((curMin, x)
@@ -80,6 +65,20 @@ namespace Players
         private float GetDistanceToInteractable(IInteractable interactable)
         {
             return Vector3.Distance(interactable.GetPosition(), transform.position);
+        }
+
+        public bool CanInteract()
+        {
+            return _closestInteractable != null;
+        }
+
+        public IInteractionAction InteractWithClosestTarget()
+        {
+            var result = _closestInteractable.Interact();
+            _interactables.Remove(_closestInteractable);
+            _closestInteractable = null;
+
+            return result;
         }
     }
 }

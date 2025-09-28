@@ -17,6 +17,7 @@ namespace Players
         private void Start()
         {
             new PlayerAttackSkill();
+            new PlayerInventory();
         }
 
         public event Action AttackStarted = () => { };

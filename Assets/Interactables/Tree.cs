@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using Players;
+using UnityEngine;
 
 namespace Interactables
 {
     public class Tree : MonoBehaviour, IInteractable
     {
-        public void Interact()
+        private static readonly Item Item = new("Wood", 1);
+
+        public IInteractionAction Interact()
         {
             GetComponent<Rigidbody>().centerOfMass = Vector3.up * 5.0f;
             GetComponent<Rigidbody>().isKinematic = false;
@@ -12,6 +15,8 @@ namespace Interactables
             GetComponent<Rigidbody>().AddForce(Vector3.one, ForceMode.Impulse);
             Unhighlight();
             Destroy(this);
+
+            return new ItemInteractionAction(Item);
         }
 
         public Vector3 GetPosition()

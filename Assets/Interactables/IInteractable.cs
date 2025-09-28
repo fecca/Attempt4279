@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Players;
+using UnityEngine;
 
 namespace Interactables
 {
     public interface IInteractable
     {
-        void Interact();
+        IInteractionAction Interact();
         Vector3 GetPosition();
         void Highlight();
         void Unhighlight();

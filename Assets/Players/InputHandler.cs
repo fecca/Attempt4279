@@ -1,63 +1,47 @@
-﻿using System;
-using Commons;
+﻿using Commons;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Players
 {
     public class InputHandler : MonoBehaviour
     {
-        private InputAction _attackAction;
-        private InputAction _interactAction;
-        private InputAction _jumpAction;
-        private InputAction _menuAction;
-        private InputAction _moveAction;
+        private IInputHandler _inputHandler;
+        private PlayerInputHandler _playerInputHandler;
+        private UIInputHandler _uiInputHandler;
 
         private void Awake()
         {
-            _moveAction = InputSystem.actions.FindAction("Move");
-            _interactAction = InputSystem.actions.FindAction("Interact");
-            _jumpAction = InputSystem.actions.FindAction("Jump");
-            _attackAction = InputSystem.actions.FindAction("Attack");
-            _menuAction = InputSystem.actions.FindAction("Menu");
-            ServiceLocator<InputHandler>.Service = this;
+            _playerInputHandler = new PlayerInputHandler();
+            _playerInputHandler.Initialize();
+            ServiceLocator<PlayerInputHandler>.Service = _playerInputHandler;
+
+            _uiInputHandler = new UIInputHandler();
+            _uiInputHandler.Initialize();
+            ServiceLocator<UIInputHandler>.Service = _uiInputHandler;
+
+            _inputHandler = _playerInputHandler;
+
+            _playerInputHandler.OpenMenuActionTriggered += OnPlayerOpenMenuActionTriggered;
+            _uiInputHandler.CloseMenuActionTriggered += OnUiCloseMenuActionTriggered;
         }
 
         private void Update()
         {
-            MoveAction.Invoke(_moveAction.ReadValue<Vector2>());
-            if (_interactAction.triggered) InteractActionTriggered.Invoke();
-            if (_jumpAction.triggered) JumpActionTriggered.Invoke();
-            if (_attackAction.triggered) AttackActionTriggered.Invoke();
-            if (_menuAction.triggered)
-            {
-                MenuActionTriggered.Invoke();
-                _menuAction = InputSystem.actions.FindAction("Menu");
-            }
+            _inputHandler.Update();
         }
 
-        private void OnEnable()
+        private void OnUiCloseMenuActionTriggered()
         {
-            _moveAction.Enable();
-            _interactAction.Enable();
-            _jumpAction.Enable();
-            _attackAction.Enable();
-            _menuAction.Enable();
+            _inputHandler.Disable();
+            _inputHandler = _playerInputHandler;
+            _inputHandler.Enable();
         }
 
-        private void OnDisable()
+        private void OnPlayerOpenMenuActionTriggered()
         {
-            _moveAction.Disable();
-            _interactAction.Disable();
-            _jumpAction.Disable();
-            _attackAction.Disable();
-            _menuAction.Disable();
+            _inputHandler.Disable();
+            _inputHandler = _uiInputHandler;
+            _inputHandler.Enable();
         }
-
-        public event Action<Vector2> MoveAction = _ => { };
-        public event Action InteractActionTriggered = () => { };
-        public event Action JumpActionTriggered = () => { };
-        public event Action AttackActionTriggered = () => { };
-        public event Action MenuActionTriggered = () => { };
     }
 }

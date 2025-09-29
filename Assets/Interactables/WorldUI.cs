@@ -6,7 +6,7 @@ namespace Interactables
 {
     public class WorldUI : MonoBehaviour
     {
-        [SerializeField] private Camera camera;
+        [SerializeField] private new Camera camera;
         [SerializeField] private Canvas canvas;
         [SerializeField] private TMP_Text interactLabel;
         [SerializeField] private InteractionArea interactionArea;

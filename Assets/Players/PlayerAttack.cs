@@ -7,7 +7,7 @@ namespace Players
     {
         private void Start()
         {
-            ServiceLocator<InputHandler>.Service.AttackActionTriggered += OnAttackTriggered;
+            ServiceLocator<PlayerInputHandler>.Service.AttackActionTriggered += OnAttackTriggered;
         }
 
         private static void OnAttackTriggered()

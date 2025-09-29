@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Menu",
+                    "name": "OpenMenu",
                     "type": "Button",
                     "id": "cfe5c606-e94e-430f-834c-809efce58bc6",
                     "expectedControlType": "",
@@ -456,7 +456,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Menu",
+                    "action": "OpenMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -479,7 +479,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "7607c7b6-cd76-4816-beef-bd0341cfe950",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -488,7 +488,7 @@
                     "name": "Cancel",
                     "type": "Button",
                     "id": "15cef263-9014-4fd5-94d9-4e4a6234a6ef",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -557,9 +557,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Menu",
+                    "name": "CloseMenu",
                     "type": "Button",
                     "id": "0ab52b08-4629-4187-845e-3a8031af3d27",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PageLeft",
+                    "type": "Button",
+                    "id": "93d013fd-a921-4174-9915-6e4ed567a5b1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PageRight",
+                    "type": "Button",
+                    "id": "6cfa521d-0d5f-43fa-8819-bff5436e2b6b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -992,7 +1010,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Menu",
+                    "action": "CloseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dfd20502-711e-4984-8a86-7a8a15770ef6",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PageLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06ab66fc-0ef7-4c7e-b90e-6877bc25b8d1",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PageRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

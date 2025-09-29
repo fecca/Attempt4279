@@ -18,7 +18,7 @@ namespace Players
             // _movement = new NavMeshAgentMovement(GetComponent<NavMeshAgent>());
             _movement = new CharacterControllerMovement(GetComponent<CharacterController>());
 
-            ServiceLocator<InputHandler>.Service.MoveAction += OnMove;
+            ServiceLocator<PlayerInputHandler>.Service.MoveAction += OnMove;
         }
 
         private void Update()

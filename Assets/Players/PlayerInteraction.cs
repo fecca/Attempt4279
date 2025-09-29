@@ -9,7 +9,7 @@ namespace Players
 
         private void Start()
         {
-            ServiceLocator<InputHandler>.Service.InteractActionTriggered += OnInteraction;
+            ServiceLocator<PlayerInputHandler>.Service.InteractActionTriggered += OnInteraction;
         }
 
         private void OnInteraction()

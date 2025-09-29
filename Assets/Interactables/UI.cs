@@ -2,29 +2,73 @@
 using Players;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Interactables
 {
     public class UI : MonoBehaviour
     {
         [SerializeField] private GameObject panel;
+        [SerializeField] private GameObject itemsPanel;
+        [SerializeField] private GameObject craftingPanel;
         [SerializeField] private TMP_Text woodText;
         [SerializeField] private TMP_Text stoneText;
+        [SerializeField] private Image itemsTab;
+        [SerializeField] private Image craftingTab;
 
-        private void Start()
-        {
-            ServiceLocator<InputHandler>.Service.MenuActionTriggered += OnMenuActionTriggered;
-        }
+        private GameObject _activeTab;
+        private bool _isInitialized;
 
         private void Update()
         {
+            if (!_isInitialized) Initialize();
+
             woodText.text = ServiceLocator<PlayerInventory>.Service.GetAmount("Wood").ToString();
             stoneText.text = ServiceLocator<PlayerInventory>.Service.GetAmount("Stone").ToString();
         }
 
-        private void OnMenuActionTriggered()
+        private void OnDisable()
         {
-            panel.SetActive(!panel.activeInHierarchy);
+            ServiceLocator<PlayerInputHandler>.Service.OpenMenuActionTriggered -= OnOpenMenuActionTriggered;
+            ServiceLocator<UIInputHandler>.Service.CloseMenuActionTriggered -= OnCloseMenuActionTriggered;
+            ServiceLocator<UIInputHandler>.Service.PageLeftActionTriggered -= OnPageLeftActionTriggered;
+            ServiceLocator<UIInputHandler>.Service.PageRightActionTriggered -= OnPageRightActionTriggered;
+        }
+
+        private void Initialize()
+        {
+            ServiceLocator<PlayerInputHandler>.Service.OpenMenuActionTriggered += OnOpenMenuActionTriggered;
+            ServiceLocator<UIInputHandler>.Service.CloseMenuActionTriggered += OnCloseMenuActionTriggered;
+            ServiceLocator<UIInputHandler>.Service.PageLeftActionTriggered += OnPageLeftActionTriggered;
+            ServiceLocator<UIInputHandler>.Service.PageRightActionTriggered += OnPageRightActionTriggered;
+
+            _isInitialized = true;
+        }
+
+        private void OnOpenMenuActionTriggered()
+        {
+            panel.SetActive(true);
+        }
+
+        private void OnCloseMenuActionTriggered()
+        {
+            panel.SetActive(false);
+        }
+
+        private void OnPageLeftActionTriggered()
+        {
+            itemsTab.color = new Color(0f, 0f, 1f, 0.75f);
+            craftingTab.color = new Color(0f, 0f, 0f, 0.75f);
+            itemsPanel.SetActive(true);
+            craftingPanel.SetActive(false);
+        }
+
+        private void OnPageRightActionTriggered()
+        {
+            itemsTab.color = new Color(0f, 0f, 0f, 0.75f);
+            craftingTab.color = new Color(0f, 0f, 1f, 0.75f);
+            itemsPanel.SetActive(false);
+            craftingPanel.SetActive(true);
         }
     }
 }

@@ -18,21 +18,20 @@ namespace Interactables
             _playerActionMap = InputSystem.actions.FindActionMap("Player");
             _playerActionMap.Enable();
 
-            ServiceLocator<InputHandler>.Service.MenuActionTriggered += OnMenuActionTriggered;
+            ServiceLocator<PlayerInputHandler>.Service.OpenMenuActionTriggered += OnOpenMenuActionTriggered;
+            ServiceLocator<UIInputHandler>.Service.CloseMenuActionTriggered += OnCloseMenuActionTriggered;
         }
 
-        private void OnMenuActionTriggered()
+        private void OnOpenMenuActionTriggered()
         {
-            if (_playerActionMap.enabled)
-            {
-                _playerActionMap.Disable();
-                _uiActionMap.Enable();
-            }
-            else
-            {
-                _playerActionMap.Enable();
-                _uiActionMap.Disable();
-            }
+            _playerActionMap.Disable();
+            _uiActionMap.Enable();
+        }
+
+        private void OnCloseMenuActionTriggered()
+        {
+            _playerActionMap.Enable();
+            _uiActionMap.Disable();
         }
     }
 }

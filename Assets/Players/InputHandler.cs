@@ -10,6 +10,7 @@ namespace Players
         private InputAction _attackAction;
         private InputAction _interactAction;
         private InputAction _jumpAction;
+        private InputAction _menuAction;
         private InputAction _moveAction;
 
         private void Awake()
@@ -18,6 +19,7 @@ namespace Players
             _interactAction = InputSystem.actions.FindAction("Interact");
             _jumpAction = InputSystem.actions.FindAction("Jump");
             _attackAction = InputSystem.actions.FindAction("Attack");
+            _menuAction = InputSystem.actions.FindAction("Menu");
             ServiceLocator<InputHandler>.Service = this;
         }
 
@@ -27,6 +29,11 @@ namespace Players
             if (_interactAction.triggered) InteractActionTriggered.Invoke();
             if (_jumpAction.triggered) JumpActionTriggered.Invoke();
             if (_attackAction.triggered) AttackActionTriggered.Invoke();
+            if (_menuAction.triggered)
+            {
+                MenuActionTriggered.Invoke();
+                _menuAction = InputSystem.actions.FindAction("Menu");
+            }
         }
 
         private void OnEnable()
@@ -35,6 +42,7 @@ namespace Players
             _interactAction.Enable();
             _jumpAction.Enable();
             _attackAction.Enable();
+            _menuAction.Enable();
         }
 
         private void OnDisable()
@@ -43,11 +51,13 @@ namespace Players
             _interactAction.Disable();
             _jumpAction.Disable();
             _attackAction.Disable();
+            _menuAction.Disable();
         }
 
         public event Action<Vector2> MoveAction = _ => { };
         public event Action InteractActionTriggered = () => { };
         public event Action JumpActionTriggered = () => { };
         public event Action AttackActionTriggered = () => { };
+        public event Action MenuActionTriggered = () => { };
     }
 }

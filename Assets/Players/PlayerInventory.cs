@@ -37,5 +37,10 @@ namespace Players
                    + Environment.NewLine
                    + string.Join(Environment.NewLine, _items.Select(i => i.ToString()));
         }
+
+        public int GetAmount(string itemId)
+        {
+            return _items.FirstOrDefault(i => i.Id == itemId)?.Amount ?? 0;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Interactables;
 using UnityEngine;
@@ -19,17 +20,24 @@ namespace Players
             _collider = GetComponent<SphereCollider>();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             _collider.radius = sphereRadius;
 
-            if (!_interactables.Any()) return;
+            if (!_interactables.Any())
+            {
+                NewInteractableFound?.Invoke(null);
+                return;
+            }
+
             var closestInteractable = GetClosestInteractable();
             if (closestInteractable == _closestInteractable) return;
 
             _closestInteractable?.Unhighlight();
             _closestInteractable = closestInteractable;
             _closestInteractable.Highlight();
+
+            NewInteractableFound?.Invoke(_closestInteractable);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -54,7 +62,9 @@ namespace Players
             _closestInteractable = null;
         }
 
-        private IInteractable GetClosestInteractable()
+        public event Action<IInteractable> NewInteractableFound = _ => { };
+
+        public IInteractable GetClosestInteractable()
         {
             return _interactables.Aggregate((curMin, x)
                 => curMin == null || GetDistanceToInteractable(x) < GetDistanceToInteractable(curMin)

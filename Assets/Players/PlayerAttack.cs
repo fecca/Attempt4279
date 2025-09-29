@@ -5,14 +5,21 @@ namespace Players
 {
     public class PlayerAttack : MonoBehaviour
     {
+        private PlayerWeapon _playerWeapon;
+
+        private void Awake()
+        {
+            _playerWeapon = GetComponent<PlayerWeapon>();
+        }
+
         private void Start()
         {
             ServiceLocator<PlayerInputHandler>.Service.AttackActionTriggered += OnAttackTriggered;
         }
 
-        private static void OnAttackTriggered()
+        private void OnAttackTriggered()
         {
-            ServiceLocator<PlayerController>.Service.StartAttack();
+            _playerWeapon.Attack();
         }
     }
 }

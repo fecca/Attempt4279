@@ -17,7 +17,7 @@ namespace Players
 
         private void Start()
         {
-            new PlayerAttackSkill();
+            // new PlayerAttackSkill(this);
             new PlayerInventory();
             new InputActionMapController();
         }

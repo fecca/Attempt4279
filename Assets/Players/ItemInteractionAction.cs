@@ -1,19 +1,20 @@
-﻿using Commons;
+﻿using System.Collections.Generic;
+using Commons;
 
 namespace Players
 {
     public class ItemInteractionAction : IInteractionAction
     {
-        private readonly Item _item;
+        private readonly List<Item> _items;
 
-        public ItemInteractionAction(Item item)
+        public ItemInteractionAction(List<Item> items)
         {
-            _item = item;
+            _items = items;
         }
 
         public void Execute()
         {
-            ServiceLocator<PlayerInventory>.Service.Add(_item);
+            _items.ForEach(item => ServiceLocator<PlayerInventory>.Service.Add(item));
         }
     }
 }

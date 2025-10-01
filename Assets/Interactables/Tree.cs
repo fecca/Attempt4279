@@ -1,4 +1,5 @@
-﻿using Players;
+﻿using System.Collections.Generic;
+using Players;
 using UnityEngine;
 
 namespace Interactables
@@ -21,7 +22,7 @@ namespace Interactables
             transform.localScale = _originalScale;
             Destroy(this);
 
-            return new ItemInteractionAction(Item);
+            return new ItemInteractionAction(new List<Item> { Item });
         }
 
         public Vector3 GetPosition()

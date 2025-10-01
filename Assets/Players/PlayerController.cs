@@ -1,5 +1,6 @@
 ﻿using System;
 using Commons;
+using Enemies;
 using Interactables;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ namespace Players
             // new PlayerAttackSkill(this);
             new PlayerInventory();
             new InputActionMapController();
+            new LootSystem();
         }
 
         public event Action AttackStarted = () => { };

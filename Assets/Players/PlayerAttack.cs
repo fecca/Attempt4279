@@ -5,7 +5,7 @@ namespace Players
 {
     public class PlayerAttack : MonoBehaviour
     {
-        private PlayerWeapon _playerWeapon;
+        private IWeapon _playerWeapon;
 
         private void Awake()
         {

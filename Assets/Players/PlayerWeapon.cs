@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace Players
 {
-    public class PlayerWeapon : MonoBehaviour
+    public class PlayerWeapon : MonoBehaviour, IWeapon
     {
         private const float Cooldown = 0.5f;
+        [SerializeField] private Projectile _projectilePrefab;
         private bool _isOnCooldown;
         private int _number;
 
@@ -14,30 +15,15 @@ namespace Players
         {
             if (_isOnCooldown) return;
 
-            StartCoroutine(nameof(Shoot));
+            Shoot();
             StartCoroutine(nameof(StartCooldown));
         }
 
-        private IEnumerator Shoot()
+        private void Shoot()
         {
-            var projectile = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            projectile.gameObject.name = "Projectile " + _number++;
-            projectile.transform.position = transform.position + transform.forward;
-            projectile.transform.forward = transform.forward;
-            projectile.transform.localScale = Vector3.one * 0.2f;
-            const float lifetime = 2.0f;
-            var timer = 0f;
-
-            while (timer < lifetime)
-            {
-                var target = projectile.transform.forward * Time.deltaTime *
-                             ServiceLocator<PlayerAttributes>.Service.attackSpeed;
-                projectile.transform.position += target;
-                timer += Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-
-            Destroy(projectile);
+            var projectile = Instantiate(_projectilePrefab);
+            projectile.Initialize(transform.position, transform.forward,
+                ServiceLocator<PlayerAttributes>.Service.attackSpeed);
         }
 
         private IEnumerator StartCooldown()

@@ -1,6 +1,10 @@
-﻿using Movements;
+﻿using System.Collections.Generic;
+using Commons;
+using Movements;
+using Players;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Enemies
 {
@@ -10,6 +14,7 @@ namespace Enemies
         private const int PatrolRadius = 3;
         private int _currentHealth;
         private bool _isBeingAttacked;
+        private LootTable _lootTable;
 
         private IMovement _movement;
 
@@ -17,6 +22,11 @@ namespace Enemies
         {
             _currentHealth = MaxHealth;
             _movement = new NavMeshAgentMovement(GetComponent<NavMeshAgent>());
+            _lootTable = new LootTable(new List<Item>
+            {
+                new("Wood", 10),
+                new("Stone", 5)
+            });
         }
 
         private void Update()
@@ -25,6 +35,11 @@ namespace Enemies
 
             var position = PickNewRandomPosition();
             _movement.Move(position);
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.GetComponent<Projectile>()) TakeDamage();
         }
 
         private Vector3 PickNewRandomPosition()
@@ -46,6 +61,17 @@ namespace Enemies
             _isBeingAttacked = false;
             _currentHealth--;
             if (_currentHealth <= 0) Destroy(gameObject);
+        }
+
+        private void TakeDamage()
+        {
+            DropLoot();
+            Destroy(gameObject);
+        }
+
+        private void DropLoot()
+        {
+            ServiceLocator<LootSystem>.Service.DropLoot(transform.position, _lootTable.Get());
         }
     }
 }

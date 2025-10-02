@@ -1,9 +1,9 @@
-﻿using Commons;
-using Loot;
+﻿using Loot;
 using Movements;
 using Players;
 using UnityEngine;
 using UnityEngine.AI;
+using VContainer;
 using Random = UnityEngine.Random;
 
 namespace Enemies
@@ -18,6 +18,7 @@ namespace Enemies
 
         private int _currentHealth;
         private bool _isBeingAttacked;
+        private LootSystem _lootSystem;
         private IMovement _movement;
 
         private void Awake()
@@ -37,6 +38,12 @@ namespace Enemies
         private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.GetComponent<Projectile>()) TakeDamage();
+        }
+
+        [Inject]
+        public void Construct(LootSystem lootSystem)
+        {
+            _lootSystem = lootSystem;
         }
 
         private Vector3 PickNewRandomPosition()
@@ -68,7 +75,7 @@ namespace Enemies
 
         private void DropLoot()
         {
-            ServiceLocator<LootSystem>.Service.DropLoot(transform.position, lootTable.items, LootRolls);
+            _lootSystem.DropLoot(transform.position, lootTable.items, LootRolls);
         }
     }
 }

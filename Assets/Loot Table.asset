@@ -15,7 +15,7 @@ MonoBehaviour:
   items:
   - Id: 
     Amount: 0
-    Weight: 50
+    Weight: 100
   - Id: Wood
     Amount: 1
     Weight: 15

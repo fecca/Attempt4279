@@ -34,7 +34,7 @@ namespace Interactables
                 return;
             }
 
-            interactLabel.text = "Interact";
+            interactLabel.text = _interactable.GetText();
         }
     }
 }

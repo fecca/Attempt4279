@@ -30,6 +30,9 @@ namespace Enemies
         {
         }
 
+        public string GetText()
+            => "Pick Up";
+
         public void Initialize(Vector3 position, List<LootItem> item)
         {
             _lootItems = item;

@@ -11,6 +11,7 @@ namespace Enemies
     {
         private const int MaxHealth = 3;
         private const int PatrolRadius = 3;
+        private const int LootRolls = 2;
 
         [SerializeField] private LootTable lootTable;
 
@@ -66,7 +67,7 @@ namespace Enemies
 
         private void DropLoot()
         {
-            ServiceLocator<LootSystem>.Service.DropLoot(transform.position, lootTable.items);
+            ServiceLocator<LootSystem>.Service.DropLoot(transform.position, lootTable.items, LootRolls);
         }
     }
 }

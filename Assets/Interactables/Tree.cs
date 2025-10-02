@@ -39,5 +39,8 @@ namespace Interactables
         {
             transform.localScale = _originalScale;
         }
+
+        public string GetText()
+            => "Chop";
     }
 }

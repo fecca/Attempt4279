@@ -13,10 +13,9 @@ namespace Enemies
             ServiceLocator<LootSystem>.Service = this;
         }
 
-        public void DropLoot(Vector3 position, List<LootItem> items)
+        public void DropLoot(Vector3 position, List<LootItem> items, int lootRolls)
         {
-            var drops = LootRandomizer.GetItems(items, 2);
-            drops.ForEach(Debug.Log);
+            var drops = LootRandomizer.GetItems(items, lootRolls);
             if (drops.All(d => string.IsNullOrEmpty(d.Id))) return;
 
             var go = new GameObject("Loot");

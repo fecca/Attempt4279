@@ -9,5 +9,6 @@ namespace Interactables
         Vector3 GetPosition();
         void Highlight();
         void Unhighlight();
+        string GetText();
     }
 }

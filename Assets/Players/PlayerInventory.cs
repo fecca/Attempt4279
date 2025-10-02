@@ -27,9 +27,9 @@ namespace Players
             Debug.Log($"Adding {itemInstance.Amount} {itemInstance.Blueprint.id} to the inventory");
         }
 
-        public PlayerItem GetAmount(string itemId)
+        public List<PlayerItem> GetItems()
         {
-            return _items.FirstOrDefault(i => i.Id == itemId);
+            return _items;
         }
     }
 }

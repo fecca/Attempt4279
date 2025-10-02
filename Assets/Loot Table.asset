@@ -15,19 +15,31 @@ MonoBehaviour:
   items:
   - Blueprint: {fileID: 11400000, guid: 00f6908c8bc70a34bb18d1b075118129, type: 2}
     Amount: 0
-    Weight: 100
-  - Blueprint: {fileID: 11400000, guid: 0109590b2a747b44db6502acd31bd14a, type: 2}
+    Weight: 1
+  - Blueprint: {fileID: 11400000, guid: 90c3a86ffbe46794aa74268f9848ec45, type: 2}
     Amount: 1
-    Weight: 15
+    Weight: 1
+  - Blueprint: {fileID: 11400000, guid: 16e4ff63619ac6945baa863e1c32cf9f, type: 2}
+    Amount: 1
+    Weight: 1
+  - Blueprint: {fileID: 11400000, guid: 5c658a854c2998d4693546c3133ccc3e, type: 2}
+    Amount: 1
+    Weight: 1
+  - Blueprint: {fileID: 11400000, guid: e8a686e5ed6ba714abad2b020476f03f, type: 2}
+    Amount: 1
+    Weight: 1
+  - Blueprint: {fileID: 11400000, guid: 3d681f332d62f8c449a4bfc7d64f878f, type: 2}
+    Amount: 1
+    Weight: 1
+  - Blueprint: {fileID: 11400000, guid: 9143a90e320d6a243950cacc0c181abd, type: 2}
+    Amount: 1
+    Weight: 1
   - Blueprint: {fileID: 11400000, guid: f5af90c7a60d5ba48a8bac2b0f077d17, type: 2}
     Amount: 1
-    Weight: 15
-  - Blueprint: {fileID: 11400000, guid: 0109590b2a747b44db6502acd31bd14a, type: 2}
-    Amount: 2
-    Weight: 5
-  - Blueprint: {fileID: 11400000, guid: f5af90c7a60d5ba48a8bac2b0f077d17, type: 2}
-    Amount: 2
-    Weight: 5
-  - Blueprint: {fileID: 11400000, guid: 0109590b2a747b44db6502acd31bd14a, type: 2}
-    Amount: 5
+    Weight: 1
+  - Blueprint: {fileID: 11400000, guid: d808a16360514664ebbe76747719b0c3, type: 2}
+    Amount: 1
+    Weight: 1
+  - Blueprint: {fileID: 11400000, guid: d808a16360514664ebbe76747719b0c3, type: 2}
+    Amount: 1
     Weight: 1

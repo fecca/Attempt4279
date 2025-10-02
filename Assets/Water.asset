@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e12115a38019462ebdf407708547e373, type: 3}
-  m_Name: Stone
+  m_Name: Water
   m_EditorClassIdentifier: 
-  id: stone
-  icon: {fileID: 21300000, guid: fed95e312165a5142872ba53d9a5f503, type: 3}
+  id: water
+  icon: {fileID: 21300000, guid: 4e77485e0f5ef024f8678f3b67a46553, type: 3}

@@ -2,16 +2,16 @@
 {
     public class PlayerItem
     {
-        private readonly ItemBlueprint _itemBlueprint;
+        public readonly ItemBlueprint Blueprint;
 
-        public PlayerItem(ItemBlueprint itemBlueprint, int amount)
+        public PlayerItem(ItemBlueprint blueprint, int amount)
         {
-            _itemBlueprint = itemBlueprint;
+            Blueprint = blueprint;
             Amount = amount;
         }
 
         public string Id
-            => _itemBlueprint.id;
+            => Blueprint.id;
 
         public int Amount { get; set; }
 

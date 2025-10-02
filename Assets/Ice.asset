@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e12115a38019462ebdf407708547e373, type: 3}
-  m_Name: Stone
+  m_Name: Ice
   m_EditorClassIdentifier: 
-  id: stone
-  icon: {fileID: 21300000, guid: fed95e312165a5142872ba53d9a5f503, type: 3}
+  id: ice
+  icon: {fileID: 21300000, guid: 32f2b7d8d4172624ea27691629292cef, type: 3}

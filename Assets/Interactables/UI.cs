@@ -1,6 +1,5 @@
 ﻿using Commons;
 using Players;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +10,9 @@ namespace Interactables
         [SerializeField] private GameObject panel;
         [SerializeField] private GameObject itemsPanel;
         [SerializeField] private GameObject craftingPanel;
-        [SerializeField] private TMP_Text woodText;
-        [SerializeField] private TMP_Text stoneText;
         [SerializeField] private Image itemsTab;
         [SerializeField] private Image craftingTab;
+        [SerializeField] private InventoryItem itemPrefab;
 
         private GameObject _activeTab;
         private bool _isInitialized;
@@ -22,9 +20,6 @@ namespace Interactables
         private void Update()
         {
             if (!_isInitialized) Initialize();
-
-            woodText.text = ServiceLocator<PlayerInventory>.Service.GetAmount("wood").Amount.ToString();
-            stoneText.text = ServiceLocator<PlayerInventory>.Service.GetAmount("stone").Amount.ToString();
         }
 
         private void OnDisable()
@@ -48,6 +43,15 @@ namespace Interactables
         private void OnOpenMenuActionTriggered()
         {
             panel.SetActive(true);
+
+            foreach (var inventoryItem in itemsPanel.GetComponentsInChildren<InventoryItem>())
+                Destroy(inventoryItem.gameObject);
+
+            ServiceLocator<PlayerInventory>.Service.GetItems().ForEach(item =>
+            {
+                var inventoryItem = Instantiate(itemPrefab, itemsPanel.transform);
+                inventoryItem.Initialize(item);
+            });
         }
 
         private void OnCloseMenuActionTriggered()

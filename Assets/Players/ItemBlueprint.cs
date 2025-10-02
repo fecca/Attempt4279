@@ -6,6 +6,7 @@ namespace Players
     public class ItemBlueprint : ScriptableObject
     {
         public string id;
+        public Sprite icon;
 
         public override string ToString()
         {

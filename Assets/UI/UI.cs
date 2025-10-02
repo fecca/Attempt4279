@@ -1,9 +1,10 @@
 ﻿using Commons;
+using Inputs;
 using Players;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Interactables
+namespace UI
 {
     public class UI : MonoBehaviour
     {

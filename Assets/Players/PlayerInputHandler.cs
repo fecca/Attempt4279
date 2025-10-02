@@ -1,5 +1,6 @@
 ﻿using System;
 using Commons;
+using Inputs;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,15 +13,6 @@ namespace Players
         private InputAction _jumpAction;
         private InputAction _moveAction;
         private InputAction _openMenuAction;
-
-        public void Initialize()
-        {
-            _moveAction = InputSystem.actions.FindAction("Move");
-            _interactAction = InputSystem.actions.FindAction("Interact");
-            _jumpAction = InputSystem.actions.FindAction("Jump");
-            _attackAction = InputSystem.actions.FindAction("Attack");
-            _openMenuAction = InputSystem.actions.FindAction("OpenMenu");
-        }
 
         public void Enable()
         {
@@ -47,6 +39,15 @@ namespace Players
             if (_jumpAction.triggered) JumpActionTriggered.Invoke();
             if (_attackAction.triggered) AttackActionTriggered.Invoke();
             if (_openMenuAction.triggered) OpenMenuActionTriggered.Invoke();
+        }
+
+        public void Initialize()
+        {
+            _moveAction = InputSystem.actions.FindAction("Move");
+            _interactAction = InputSystem.actions.FindAction("Interact");
+            _jumpAction = InputSystem.actions.FindAction("Jump");
+            _attackAction = InputSystem.actions.FindAction("Attack");
+            _openMenuAction = InputSystem.actions.FindAction("OpenMenu");
         }
 
         private void Awake()

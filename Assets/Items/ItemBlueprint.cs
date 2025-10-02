@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Players
+namespace Items
 {
     [CreateAssetMenu(menuName = "Assets/Create/Item Blueprint", fileName = "Item Blueprint")]
     public class ItemBlueprint : ScriptableObject

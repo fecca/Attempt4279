@@ -1,6 +1,7 @@
 ﻿using System;
+using Items;
 
-namespace Players
+namespace Loot
 {
     [Serializable]
     public class LootItem

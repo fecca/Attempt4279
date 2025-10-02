@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Commons;
+using Items;
+using Players;
 
-namespace Players
+namespace Interactions
 {
     public class ItemInteractionAction : IInteractionAction
     {

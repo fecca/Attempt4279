@@ -2,20 +2,13 @@
 using Commons;
 using UnityEngine.InputSystem;
 
-namespace Players
+namespace Inputs
 {
     public class UIInputHandler : IInputHandler
     {
         private InputAction _closeMenuAction;
         private InputAction _pageLeftAction;
         private InputAction _pageRightAction;
-
-        public void Initialize()
-        {
-            _closeMenuAction = InputSystem.actions.FindAction("CloseMenu");
-            _pageLeftAction = InputSystem.actions.FindAction("PageLeft");
-            _pageRightAction = InputSystem.actions.FindAction("PageRight");
-        }
 
         public void Enable()
         {
@@ -36,6 +29,13 @@ namespace Players
             if (_pageLeftAction.triggered) PageLeftActionTriggered.Invoke();
             if (_pageRightAction.triggered) PageRightActionTriggered.Invoke();
             if (_closeMenuAction.triggered) CloseMenuActionTriggered.Invoke();
+        }
+
+        public void Initialize()
+        {
+            _closeMenuAction = InputSystem.actions.FindAction("CloseMenu");
+            _pageLeftAction = InputSystem.actions.FindAction("PageLeft");
+            _pageRightAction = InputSystem.actions.FindAction("PageRight");
         }
 
         private void Awake()

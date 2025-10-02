@@ -1,4 +1,4 @@
-﻿namespace Players
+﻿namespace Interactions
 {
     public interface IInteractionAction
     {

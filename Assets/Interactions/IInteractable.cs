@@ -1,7 +1,6 @@
-﻿using Players;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Interactables
+namespace Interactions
 {
     public interface IInteractable
     {

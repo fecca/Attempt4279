@@ -1,8 +1,9 @@
-﻿using Players;
+﻿using Interactions;
+using Players;
 using TMPro;
 using UnityEngine;
 
-namespace Interactables
+namespace UI
 {
     public class WorldUI : MonoBehaviour
     {

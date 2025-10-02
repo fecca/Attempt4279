@@ -1,4 +1,6 @@
-﻿namespace Players
+﻿using Items;
+
+namespace Players
 {
     public class PlayerItem
     {

@@ -3,20 +3,23 @@ using Commons;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Boot : MonoBehaviour
+namespace Scenes
 {
-    private void Start()
+    public class Boot : MonoBehaviour
     {
-        SetUpServices();
-        LoadMainSceneAsync().Forget();
-    }
+        private void Start()
+        {
+            SetUpServices();
+            LoadMainSceneAsync().Forget();
+        }
 
-    private static void SetUpServices()
-    {
-    }
+        private static void SetUpServices()
+        {
+        }
 
-    private static async Task LoadMainSceneAsync()
-    {
-        await SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
+        private static async Task LoadMainSceneAsync()
+        {
+            await SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
+        }
     }
 }

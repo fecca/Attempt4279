@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using Players;
+using Interactions;
+using Items;
 using UnityEngine;
 
-namespace Interactables
+namespace Environments
 {
     public class Tree : MonoBehaviour, IInteractable
     {

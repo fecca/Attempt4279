@@ -1,4 +1,4 @@
-﻿namespace Players
+﻿namespace Items
 {
     public interface IWeapon
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Interactables;
-using Players;
+using Interactions;
+using Items;
 using UnityEngine;
 
 namespace Loot

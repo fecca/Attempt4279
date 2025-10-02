@@ -4,7 +4,7 @@ using Interactables;
 using Players;
 using UnityEngine;
 
-namespace Enemies
+namespace Loot
 {
     public class WorldLootObject : MonoBehaviour, IInteractable
     {

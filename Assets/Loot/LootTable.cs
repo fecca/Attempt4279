@@ -2,7 +2,7 @@
 using Players;
 using UnityEngine;
 
-namespace Enemies
+namespace Loot
 {
     [CreateAssetMenu(menuName = "Assets/Create/LootTable", fileName = "Loot Table")]
     public class LootTable : ScriptableObject

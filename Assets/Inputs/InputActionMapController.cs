@@ -2,7 +2,7 @@
 using Players;
 using UnityEngine.InputSystem;
 
-namespace Interactables
+namespace Inputs
 {
     public class InputActionMapController
     {

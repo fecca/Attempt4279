@@ -1,7 +1,7 @@
 ﻿using System;
 using Commons;
-using Enemies;
-using Interactables;
+using Inputs;
+using Loot;
 using UnityEngine;
 
 namespace Players

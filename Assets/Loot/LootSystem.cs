@@ -4,7 +4,7 @@ using Commons;
 using Players;
 using UnityEngine;
 
-namespace Enemies
+namespace Loot
 {
     public class LootSystem
     {

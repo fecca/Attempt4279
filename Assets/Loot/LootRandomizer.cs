@@ -3,7 +3,7 @@ using System.Linq;
 using Players;
 using UnityEngine;
 
-namespace Enemies
+namespace Loot
 {
     public class LootRandomizer
     {

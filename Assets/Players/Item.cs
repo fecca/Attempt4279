@@ -10,5 +10,10 @@
 
         public string Id { get; }
         public int Amount { get; }
+
+        public override string ToString()
+        {
+            return $"{Id}, Amount: {Amount}";
+        }
     }
 }

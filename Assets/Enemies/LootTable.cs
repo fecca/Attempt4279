@@ -1,20 +1,12 @@
 ﻿using System.Collections.Generic;
 using Players;
+using UnityEngine;
 
 namespace Enemies
 {
-    public class LootTable
+    [CreateAssetMenu(menuName = "Assets/Create/LootTable", fileName = "Loot Table")]
+    public class LootTable : ScriptableObject
     {
-        private readonly List<Item> _items;
-
-        public LootTable(List<Item> items)
-        {
-            _items = items;
-        }
-
-        public Loot Get()
-        {
-            return new Loot(_items);
-        }
+        public List<LootItem> items;
     }
 }

@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &21345227
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -803,6 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &400595622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1872,6 +1874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &708280469
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2558,6 +2561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &962038584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3435,6 +3439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &1213823341
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3802,6 +3807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &1275126781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4036,6 +4042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &1297241568
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4654,6 +4661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &1610046959
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5011,6 +5019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &1638205864
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5177,24 +5186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionArea: {fileID: 1679040303}
---- !u!114 &1679040318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679040291}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 434a20bbf07245f7b226941ba8a2df40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 10
-    y: 400
-    width: 500
-    height: 500
 --- !u!114 &1679040330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5353,6 +5344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &1701301140
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5661,6 +5653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &1912842448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6333,6 +6326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443bb1c40e20420bac3e959c92f7efc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTable: {fileID: 11400000, guid: e07416611960c874f9c4f52e23b33a73, type: 2}
 --- !u!65 &2121849421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6587,9 +6581,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5497143642819476449, guid: 7e16470152c0d7f44a131d885461eb7d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1679040317}
-    - targetCorrespondingSourceObject: {fileID: 5497143642819476449, guid: 7e16470152c0d7f44a131d885461eb7d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1679040318}
     - targetCorrespondingSourceObject: {fileID: 5497143642819476449, guid: 7e16470152c0d7f44a131d885461eb7d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1679040330}

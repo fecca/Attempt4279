@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Commons;
+﻿using Commons;
 using Movements;
 using Players;
 using UnityEngine;
@@ -12,21 +11,17 @@ namespace Enemies
     {
         private const int MaxHealth = 3;
         private const int PatrolRadius = 3;
+
+        [SerializeField] private LootTable lootTable;
+
         private int _currentHealth;
         private bool _isBeingAttacked;
-        private LootTable _lootTable;
-
         private IMovement _movement;
 
         private void Awake()
         {
             _currentHealth = MaxHealth;
             _movement = new NavMeshAgentMovement(GetComponent<NavMeshAgent>());
-            _lootTable = new LootTable(new List<Item>
-            {
-                new("Wood", 10),
-                new("Stone", 5)
-            });
         }
 
         private void Update()
@@ -71,7 +66,7 @@ namespace Enemies
 
         private void DropLoot()
         {
-            ServiceLocator<LootSystem>.Service.DropLoot(transform.position, _lootTable.Get());
+            ServiceLocator<LootSystem>.Service.DropLoot(transform.position, lootTable.items);
         }
     }
 }

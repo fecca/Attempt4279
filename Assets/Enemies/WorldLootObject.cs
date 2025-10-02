@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Interactables;
 using Players;
 using UnityEngine;
@@ -7,11 +8,11 @@ namespace Enemies
 {
     public class WorldLootObject : MonoBehaviour, IInteractable
     {
-        private List<Item> _items;
+        private List<LootItem> _lootItems;
 
         public IInteractionAction Interact()
         {
-            var items = new ItemInteractionAction(_items);
+            var items = new ItemInteractionAction(_lootItems.Select(lootItem => lootItem.AsItem()).ToList());
             Destroy(gameObject);
             return items;
         }
@@ -29,9 +30,9 @@ namespace Enemies
         {
         }
 
-        public void Initialize(Vector3 position, List<Item> item)
+        public void Initialize(Vector3 position, List<LootItem> item)
         {
-            _items = item;
+            _lootItems = item;
 
             gameObject.AddComponent<BoxCollider>();
             gameObject.AddComponent<Rigidbody>();

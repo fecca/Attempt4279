@@ -5,9 +5,9 @@ namespace Players
 {
     public class ItemInteractionAction : IInteractionAction
     {
-        private readonly List<Item> _items;
+        private readonly List<ItemInstance> _items;
 
-        public ItemInteractionAction(List<Item> items)
+        public ItemInteractionAction(List<ItemInstance> items)
         {
             _items = items;
         }

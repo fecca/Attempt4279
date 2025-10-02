@@ -6,7 +6,8 @@ namespace Interactables
 {
     public class Tree : MonoBehaviour, IInteractable
     {
-        private static readonly Item Item = new("Wood", 1);
+        [SerializeField] private ItemBlueprint itemBlueprint;
+
         private Vector3 _originalScale;
 
         private void Awake()
@@ -22,7 +23,7 @@ namespace Interactables
             transform.localScale = _originalScale;
             Destroy(this);
 
-            return new ItemInteractionAction(new List<Item> { Item });
+            return new ItemInteractionAction(new List<ItemInstance> { new(itemBlueprint, 1) });
         }
 
         public Vector3 GetPosition()

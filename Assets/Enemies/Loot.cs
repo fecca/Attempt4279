@@ -5,14 +5,14 @@ namespace Enemies
 {
     public class Loot
     {
-        private readonly List<Item> _items;
+        private readonly List<ItemBlueprint> _items;
 
-        public Loot(List<Item> items)
+        public Loot(List<ItemBlueprint> items)
         {
             _items = items;
         }
 
-        public List<Item> Items()
+        public List<ItemBlueprint> Items()
         {
             return _items;
         }

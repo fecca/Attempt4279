@@ -16,7 +16,7 @@ namespace Enemies
         public void DropLoot(Vector3 position, List<LootItem> items, int lootRolls)
         {
             var drops = LootRandomizer.GetItems(items, lootRolls);
-            if (drops.All(d => string.IsNullOrEmpty(d.Id))) return;
+            if (drops.All(d => string.IsNullOrEmpty(d.Blueprint.id))) return;
 
             var go = new GameObject("Loot");
             var worldLootObject = go.AddComponent<WorldLootObject>();

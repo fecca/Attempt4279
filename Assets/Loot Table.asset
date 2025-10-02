@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: Loot Table
   m_EditorClassIdentifier: 
   items:
-  - Id: 
+  - Blueprint: {fileID: 11400000, guid: 00f6908c8bc70a34bb18d1b075118129, type: 2}
     Amount: 0
     Weight: 100
-  - Id: Wood
+  - Blueprint: {fileID: 11400000, guid: 0109590b2a747b44db6502acd31bd14a, type: 2}
     Amount: 1
     Weight: 15
-  - Id: Stone
+  - Blueprint: {fileID: 11400000, guid: f5af90c7a60d5ba48a8bac2b0f077d17, type: 2}
     Amount: 1
     Weight: 15
-  - Id: Wood
+  - Blueprint: {fileID: 11400000, guid: 0109590b2a747b44db6502acd31bd14a, type: 2}
     Amount: 2
     Weight: 5
-  - Id: Stone
+  - Blueprint: {fileID: 11400000, guid: f5af90c7a60d5ba48a8bac2b0f077d17, type: 2}
     Amount: 2
     Weight: 5
-  - Id: Wood
+  - Blueprint: {fileID: 11400000, guid: 0109590b2a747b44db6502acd31bd14a, type: 2}
     Amount: 5
     Weight: 1

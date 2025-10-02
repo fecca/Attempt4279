@@ -23,8 +23,8 @@ namespace Interactables
         {
             if (!_isInitialized) Initialize();
 
-            woodText.text = ServiceLocator<PlayerInventory>.Service.GetAmount("Wood").ToString();
-            stoneText.text = ServiceLocator<PlayerInventory>.Service.GetAmount("Stone").ToString();
+            woodText.text = ServiceLocator<PlayerInventory>.Service.GetAmount("wood").Amount.ToString();
+            stoneText.text = ServiceLocator<PlayerInventory>.Service.GetAmount("stone").Amount.ToString();
         }
 
         private void OnDisable()

@@ -14,22 +14,22 @@ namespace Players
             ServiceLocator<PlayerInventory>.Service = this;
         }
 
-        public void Add(Item item)
+        public void Add(ItemInstance itemInstance)
         {
-            if (string.IsNullOrEmpty(item.Id)) return;
+            if (string.IsNullOrEmpty(itemInstance.Blueprint.id)) return;
 
-            var existingItem = _items.FirstOrDefault(i => i.Id == item.Id);
+            var existingItem = _items.FirstOrDefault(i => i.Id == itemInstance.Blueprint.id);
             if (existingItem != null)
-                existingItem.Amount += item.Amount;
+                existingItem.Amount += itemInstance.Amount;
             else
-                _items.Add(new PlayerItem(item.Id, item.Amount));
+                _items.Add(new PlayerItem(itemInstance.Blueprint, itemInstance.Amount));
 
-            Debug.Log($"Adding item: {item}");
+            Debug.Log($"Adding {itemInstance.Amount} {itemInstance.Blueprint.id} to the inventory");
         }
 
-        public int GetAmount(string itemId)
+        public PlayerItem GetAmount(string itemId)
         {
-            return _items.FirstOrDefault(i => i.Id == itemId)?.Amount ?? 0;
+            return _items.FirstOrDefault(i => i.Id == itemId);
         }
     }
 }

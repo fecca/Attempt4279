@@ -6,7 +6,8 @@ namespace Interactables
 {
     public class Rock : MonoBehaviour, IInteractable
     {
-        private static readonly Item Item = new("Stone", 2);
+        [SerializeField] private ItemBlueprint itemBlueprint;
+
         private Vector3 _originalScale;
 
         private void Awake()
@@ -19,7 +20,7 @@ namespace Interactables
             transform.localScale = _originalScale * 0.25f;
             Destroy(this);
 
-            return new ItemInteractionAction(new List<Item> { Item });
+            return new ItemInteractionAction(new List<ItemInstance> { new(itemBlueprint, 1) });
         }
 
         public Vector3 GetPosition()

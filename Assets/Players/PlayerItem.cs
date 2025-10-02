@@ -2,13 +2,17 @@
 {
     public class PlayerItem
     {
-        public PlayerItem(string id, int amount)
+        private readonly ItemBlueprint _itemBlueprint;
+
+        public PlayerItem(ItemBlueprint itemBlueprint, int amount)
         {
-            Id = id;
+            _itemBlueprint = itemBlueprint;
             Amount = amount;
         }
 
-        public string Id { get; }
+        public string Id
+            => _itemBlueprint.id;
+
         public int Amount { get; set; }
 
         public override string ToString()

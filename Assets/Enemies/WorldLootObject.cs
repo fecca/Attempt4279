@@ -12,7 +12,8 @@ namespace Enemies
 
         public IInteractionAction Interact()
         {
-            var items = new ItemInteractionAction(_lootItems.Select(lootItem => lootItem.AsItem()).ToList());
+            var items = new ItemInteractionAction(_lootItems
+                .Select(lootItem => new ItemInstance(lootItem.Blueprint, lootItem.Amount)).ToList());
             Destroy(gameObject);
             return items;
         }

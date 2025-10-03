@@ -22,13 +22,9 @@ namespace Movements
             var move = new Vector3(direction.x, 0, direction.y);
             move = Vector3.ClampMagnitude(move, 1f);
 
-            if (move != Vector3.zero) _characterController.transform.forward = move;
-
-            // Jump
-            // if (jumpAction.action.triggered && _groundedPlayer)
-            // {
-            //     _playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-            // }
+            if (move != Vector3.zero)
+                _characterController.transform.forward =
+                    Vector3.Lerp(_characterController.transform.forward, move, Time.deltaTime * 10f);
 
             _playerVelocity.y += -9.81f * Time.deltaTime;
 

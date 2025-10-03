@@ -2,6 +2,7 @@
 using Players;
 using TMPro;
 using UnityEngine;
+using VContainer;
 
 namespace UI
 {
@@ -10,12 +11,18 @@ namespace UI
         [SerializeField] private new Camera camera;
         [SerializeField] private Canvas canvas;
         [SerializeField] private TMP_Text interactLabel;
-        [SerializeField] private InteractionArea interactionArea;
+
         private IInteractable _interactable;
+        private PlayerSpawner _spawner;
+        private InteractableObserver _interactableObserver;
+
+        [Inject]
+        public void Construct(InteractableObserver interactableObserver)
+            => _interactableObserver = interactableObserver;
 
         private void Start()
         {
-            interactionArea.NewInteractableFound += NewInteractableFound;
+            _interactableObserver.NewInteractableFound += OnNewInteractableFound;
         }
 
         private void LateUpdate()
@@ -26,7 +33,7 @@ namespace UI
             interactLabel.rectTransform.position = p;
         }
 
-        private void NewInteractableFound(IInteractable interactable)
+        private void OnNewInteractableFound(IInteractable interactable)
         {
             _interactable = interactable;
             if (_interactable == null)

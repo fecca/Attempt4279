@@ -1,8 +1,8 @@
-﻿using Commons;
-using Inputs;
+﻿using Inputs;
 using Players;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 
 namespace UI
 {
@@ -17,28 +17,33 @@ namespace UI
 
         private GameObject _activeTab;
         private bool _isInitialized;
+        private PlayerInventory _playerInventory;
+        private PlayerInputHandler _playerInputHandler;
+        private UIInputHandler _uiInputHandler;
 
-        private void Update()
+        [Inject]
+        public void Construct(PlayerInventory playerInventory, PlayerInputHandler playerInputHandler,
+            UIInputHandler uiInputHandler)
         {
-            if (!_isInitialized) Initialize();
+            _uiInputHandler = uiInputHandler;
+            _playerInputHandler = playerInputHandler;
+            _playerInventory = playerInventory;
+        }
+
+        private void OnEnable()
+        {
+            _playerInputHandler.OpenMenuActionTriggered += OnOpenMenuActionTriggered;
+            _uiInputHandler.CloseMenuActionTriggered += OnCloseMenuActionTriggered;
+            _uiInputHandler.PageLeftActionTriggered += OnPageLeftActionTriggered;
+            _uiInputHandler.PageRightActionTriggered += OnPageRightActionTriggered;
         }
 
         private void OnDisable()
         {
-            ServiceLocator<PlayerInputHandler>.Service.OpenMenuActionTriggered -= OnOpenMenuActionTriggered;
-            ServiceLocator<UIInputHandler>.Service.CloseMenuActionTriggered -= OnCloseMenuActionTriggered;
-            ServiceLocator<UIInputHandler>.Service.PageLeftActionTriggered -= OnPageLeftActionTriggered;
-            ServiceLocator<UIInputHandler>.Service.PageRightActionTriggered -= OnPageRightActionTriggered;
-        }
-
-        private void Initialize()
-        {
-            ServiceLocator<PlayerInputHandler>.Service.OpenMenuActionTriggered += OnOpenMenuActionTriggered;
-            ServiceLocator<UIInputHandler>.Service.CloseMenuActionTriggered += OnCloseMenuActionTriggered;
-            ServiceLocator<UIInputHandler>.Service.PageLeftActionTriggered += OnPageLeftActionTriggered;
-            ServiceLocator<UIInputHandler>.Service.PageRightActionTriggered += OnPageRightActionTriggered;
-
-            _isInitialized = true;
+            _playerInputHandler.OpenMenuActionTriggered -= OnOpenMenuActionTriggered;
+            _uiInputHandler.CloseMenuActionTriggered -= OnCloseMenuActionTriggered;
+            _uiInputHandler.PageLeftActionTriggered -= OnPageLeftActionTriggered;
+            _uiInputHandler.PageRightActionTriggered -= OnPageRightActionTriggered;
         }
 
         private void OnOpenMenuActionTriggered()
@@ -48,7 +53,7 @@ namespace UI
             foreach (var inventoryItem in itemsPanel.GetComponentsInChildren<InventoryItem>())
                 Destroy(inventoryItem.gameObject);
 
-            ServiceLocator<PlayerInventory>.Service.GetItems().ForEach(item =>
+            _playerInventory.GetItems().ForEach(item =>
             {
                 var inventoryItem = Instantiate(itemPrefab, itemsPanel.transform);
                 inventoryItem.Initialize(item);

@@ -1,5 +1,4 @@
-﻿using Commons;
-using Players;
+﻿using Players;
 using UnityEngine.InputSystem;
 
 namespace Inputs
@@ -11,15 +10,15 @@ namespace Inputs
 
         private bool _isMenuActive;
 
-        public InputActionMapController()
+        public InputActionMapController(PlayerInputHandler playerInputHandler, UIInputHandler uiInputHandler)
         {
             _uiActionMap = InputSystem.actions.FindActionMap("UI");
             _uiActionMap.Disable();
             _playerActionMap = InputSystem.actions.FindActionMap("Player");
             _playerActionMap.Enable();
 
-            ServiceLocator<PlayerInputHandler>.Service.OpenMenuActionTriggered += OnOpenMenuActionTriggered;
-            ServiceLocator<UIInputHandler>.Service.CloseMenuActionTriggered += OnCloseMenuActionTriggered;
+            playerInputHandler.OpenMenuActionTriggered += OnOpenMenuActionTriggered;
+            uiInputHandler.CloseMenuActionTriggered += OnCloseMenuActionTriggered;
         }
 
         private void OnOpenMenuActionTriggered()

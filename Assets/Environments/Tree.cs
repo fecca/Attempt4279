@@ -2,6 +2,7 @@
 using Interactions;
 using Items;
 using UnityEngine;
+using VContainer;
 
 namespace Environments
 {
@@ -10,6 +11,7 @@ namespace Environments
         [SerializeField] private ItemBlueprint itemBlueprint;
 
         private Vector3 _originalScale;
+        private InteractionActionFactory _interactionActionFactory;
 
         private void Awake()
         {

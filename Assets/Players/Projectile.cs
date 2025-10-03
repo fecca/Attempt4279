@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Players
 {
@@ -26,5 +27,8 @@ namespace Players
             transform.position = spawnPosition + forward;
             transform.forward = forward;
         }
+
+        private void OnCollisionEnter(Collision other)
+            => Destroy(gameObject);
     }
 }

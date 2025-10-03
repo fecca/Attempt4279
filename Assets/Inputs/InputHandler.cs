@@ -1,6 +1,7 @@
 ﻿using Commons;
 using Players;
 using UnityEngine;
+using VContainer;
 
 namespace Inputs
 {
@@ -10,16 +11,17 @@ namespace Inputs
         private PlayerInputHandler _playerInputHandler;
         private UIInputHandler _uiInputHandler;
 
-        private void Awake()
+        [Inject]
+        public void Construct(PlayerInputHandler playerInputHandler, UIInputHandler uiInputHandler)
         {
-            _playerInputHandler = new PlayerInputHandler();
+            _playerInputHandler = playerInputHandler;
+            _uiInputHandler = uiInputHandler;
+        }
+
+        private void Start()
+        {
             _playerInputHandler.Initialize();
-            ServiceLocator<PlayerInputHandler>.Service = _playerInputHandler;
-
-            _uiInputHandler = new UIInputHandler();
             _uiInputHandler.Initialize();
-            ServiceLocator<UIInputHandler>.Service = _uiInputHandler;
-
             _inputHandler = _playerInputHandler;
 
             _playerInputHandler.OpenMenuActionTriggered += OnPlayerOpenMenuActionTriggered;

@@ -8,6 +8,12 @@ namespace Enemies
         private EnemyPackSpawnPoint[] _enemyPackSpawnPoints;
         private IObjectResolver _objectResolver;
 
+        [Inject]
+        public void Construct(IObjectResolver objectResolver)
+        {
+            _objectResolver = objectResolver;
+        }
+
         private void Awake()
         {
             _enemyPackSpawnPoints = GetComponentsInChildren<EnemyPackSpawnPoint>();
@@ -16,12 +22,6 @@ namespace Enemies
         private void Start()
         {
             foreach (var enemyPackSpawnPoint in _enemyPackSpawnPoints) enemyPackSpawnPoint.Spawn(_objectResolver);
-        }
-
-        [Inject]
-        public void Construct(IObjectResolver objectResolver)
-        {
-            _objectResolver = objectResolver;
         }
     }
 }

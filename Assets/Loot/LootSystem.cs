@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Commons;
+using Interactions;
 using Players;
 using UnityEngine;
 
@@ -8,11 +9,13 @@ namespace Loot
 {
     public class LootSystem
     {
-        public LootSystem()
-        {
-            ServiceLocator<LootSystem>.Service = this;
-        }
+        private InteractionActionFactory _interactionActionFactory;
 
+        public LootSystem(InteractionActionFactory interactionActionFactory)
+        {
+            _interactionActionFactory = interactionActionFactory;
+        }
+        
         public void DropLoot(Vector3 position, List<LootItem> items, int lootRolls)
         {
             var drops = LootRandomizer.GetItems(items, lootRolls);
@@ -20,7 +23,7 @@ namespace Loot
 
             var go = new GameObject("Loot");
             var worldLootObject = go.AddComponent<WorldLootObject>();
-            worldLootObject.Initialize(position, drops);
+            worldLootObject.Initialize(_interactionActionFactory, position, drops);
         }
     }
 }

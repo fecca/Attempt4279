@@ -2,15 +2,23 @@
 using Commons;
 using Items;
 using UnityEngine;
+using VContainer;
 
 namespace Players
 {
     public class PlayerWeapon : MonoBehaviour, IWeapon
     {
         private const float Cooldown = 0.5f;
-        [SerializeField] private Projectile _projectilePrefab;
+        [SerializeField] private Projectile projectilePrefab;
         private bool _isOnCooldown;
         private int _number;
+        private PlayerAttributes _playerAttributes;
+
+        [Inject]
+        public void Construct(PlayerAttributes playerAttributes)
+        {
+            _playerAttributes = playerAttributes;
+        }
 
         public void Attack()
         {
@@ -22,9 +30,8 @@ namespace Players
 
         private void Shoot()
         {
-            var projectile = Instantiate(_projectilePrefab);
-            projectile.Initialize(transform.position, transform.forward,
-                ServiceLocator<PlayerAttributes>.Service.attackSpeed);
+            var projectile = Instantiate(projectilePrefab);
+            projectile.Initialize(transform.position, transform.forward, _playerAttributes.attackSpeed);
         }
 
         private IEnumerator StartCooldown()

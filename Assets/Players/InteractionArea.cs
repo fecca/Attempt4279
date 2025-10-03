@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Interactions;
 using UnityEngine;
+using VContainer;
 
 namespace Players
 {
@@ -14,10 +14,22 @@ namespace Players
         private readonly List<IInteractable> _interactables = new();
         private IInteractable _closestInteractable;
         private SphereCollider _collider;
+        private InteractableObserver _interactableObserver;
+
+        [Inject]
+        public void Construct(InteractableObserver interactableObserver)
+        {
+            _interactableObserver = interactableObserver;
+        }
 
         private void Awake()
         {
             _collider = GetComponent<SphereCollider>();
+        }
+
+        private void Start()
+        {
+            _interactableObserver.Interacted += OnInteracted;
         }
 
         private void Update()
@@ -26,7 +38,7 @@ namespace Players
 
             if (!_interactables.Any())
             {
-                NewInteractableFound?.Invoke(null);
+                _interactableObserver.NotifyNewInteractableFound(null);
                 return;
             }
 
@@ -37,7 +49,7 @@ namespace Players
             _closestInteractable = closestInteractable;
             _closestInteractable.Highlight();
 
-            NewInteractableFound?.Invoke(_closestInteractable);
+            _interactableObserver.NotifyNewInteractableFound(_closestInteractable);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -62,9 +74,7 @@ namespace Players
             _closestInteractable = null;
         }
 
-        public event Action<IInteractable> NewInteractableFound = _ => { };
-
-        public IInteractable GetClosestInteractable()
+        private IInteractable GetClosestInteractable()
         {
             return _interactables.Aggregate((curMin, x)
                 => curMin == null || GetDistanceToInteractable(x) < GetDistanceToInteractable(curMin)
@@ -77,18 +87,10 @@ namespace Players
             return Vector3.Distance(interactable.GetPosition(), transform.position);
         }
 
-        public bool CanInteract()
+        private void OnInteracted(IInteractable interactable)
         {
-            return _closestInteractable != null;
-        }
-
-        public IInteractionAction InteractWithClosestTarget()
-        {
-            var result = _closestInteractable.Interact();
             _interactables.Remove(_closestInteractable);
             _closestInteractable = null;
-
-            return result;
         }
     }
 }

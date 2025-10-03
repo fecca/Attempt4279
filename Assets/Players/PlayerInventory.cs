@@ -10,11 +10,6 @@ namespace Players
     {
         private readonly List<PlayerItem> _items = new();
 
-        public PlayerInventory()
-        {
-            ServiceLocator<PlayerInventory>.Service = this;
-        }
-
         public void Add(ItemInstance itemInstance)
         {
             if (string.IsNullOrEmpty(itemInstance.Blueprint.id)) return;

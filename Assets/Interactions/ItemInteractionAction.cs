@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Commons;
 using Items;
 using Players;
 
@@ -9,6 +8,8 @@ namespace Interactions
     {
         private readonly List<ItemInstance> _items;
 
+        private PlayerInventory _playerInventory;
+
         public ItemInteractionAction(List<ItemInstance> items)
         {
             _items = items;
@@ -16,7 +17,12 @@ namespace Interactions
 
         public void Execute()
         {
-            _items.ForEach(item => ServiceLocator<PlayerInventory>.Service.Add(item));
+            _items.ForEach(item => _playerInventory.Add(item));
+        }
+
+        public void AddDependency(PlayerInventory playerInventory)
+        {
+            _playerInventory = playerInventory;
         }
     }
 }

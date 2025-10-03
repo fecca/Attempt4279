@@ -1,4 +1,4 @@
-﻿using Items;
+﻿using Items.Scripts;
 
 namespace Players
 {

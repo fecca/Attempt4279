@@ -1,11 +1,10 @@
 ﻿using System.Collections;
-using Items;
 using UnityEngine;
 using UnityEngine.Playables;
 
 namespace Players
 {
-    public class Hammer : MonoBehaviour, IWeapon
+    public class Hammer : Weapon
     {
         private const float Cooldown = 0.3f;
         [SerializeField] private Transform pivotPoint;
@@ -13,7 +12,7 @@ namespace Players
 
         private bool _isOnCooldown;
 
-        public void Attack()
+        public override void Attack()
         {
             if (_isOnCooldown) return;
 

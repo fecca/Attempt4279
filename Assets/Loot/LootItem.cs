@@ -1,5 +1,5 @@
 ﻿using System;
-using Items;
+using Items.Scripts;
 
 namespace Loot
 {

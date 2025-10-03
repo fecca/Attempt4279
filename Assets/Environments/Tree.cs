@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Interactions;
-using Items;
+using Items.Scripts;
 using UnityEngine;
 
 namespace Environments

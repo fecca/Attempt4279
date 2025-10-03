@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
 using Interactions;
-using Items;
+using Items.Scripts;
 using UnityEngine;
-using VContainer;
 
 namespace Environments
 {
     public class Rock : MonoBehaviour, IInteractable
     {
         [SerializeField] private ItemBlueprint itemBlueprint;
-        private InteractionActionFactory _interactionActionFactory;
 
         private Vector3 _originalScale;
 
@@ -43,11 +41,5 @@ namespace Environments
 
         public string GetText()
             => "Smash";
-
-        [Inject]
-        public void Construct(InteractionActionFactory interactionActionFactory)
-        {
-            _interactionActionFactory = interactionActionFactory;
-        }
     }
 }

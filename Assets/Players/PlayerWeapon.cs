@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Items;
+using Items.Scripts;
 using UnityEngine;
 using VContainer;
 

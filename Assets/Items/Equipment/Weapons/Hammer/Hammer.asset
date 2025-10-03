@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4583d3a2ee9a488cbee3e95d7de6c6af, type: 3}
+  m_Name: Hammer
+  m_EditorClassIdentifier: 
+  id: hammer
+  icon: {fileID: 21300000, guid: 4c46d6b7f210d8f478b7b7e0cd8d4ffb, type: 3}
+  stats:
+    strength: 0
+    dexterity: 0
+    intelligence: 0
+    stamina: 0
+    wisdom: 0
+    charisma: 0
+    life: 0
+    lifeRegen: 0
+    mana: 0
+    manaRegen: 0
+    damage: 2
+    armor: 0
+  requirements:
+    strength: 1
+    dexterity: 1
+    intelligence: 1
+    stamina: 0
+    wisdom: 0
+    charisma: 0
+    life: 0
+    lifeRegen: 0
+    mana: 0
+    manaRegen: 0
+    damage: 0
+    armor: 0

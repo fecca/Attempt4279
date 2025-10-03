@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edbf261122bd4e23970caad9d10ad79a, type: 3}
+  m_Name: Weak Enemy Loot Table
+  m_EditorClassIdentifier: 
+  items:
+  - Blueprint: {fileID: 11400000, guid: 292cffae74c17184898ed6d5a3deab66, type: 2}
+    Amount: 0
+    Weight: 10
+  - Blueprint: {fileID: 11400000, guid: 913695b0f635b71429e0ebca3e276b0b, type: 2}
+    Amount: 1
+    Weight: 1
+  - Blueprint: {fileID: 11400000, guid: 071b11beafcaefe469802eb6a45104e4, type: 2}
+    Amount: 1
+    Weight: 1
+  - Blueprint: {fileID: 11400000, guid: 38a5efea916143d4394afe9662167d20, type: 2}
+    Amount: 1
+    Weight: 1

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Items;
+using Items.Scripts;
 using Players;
 
 namespace Interactions

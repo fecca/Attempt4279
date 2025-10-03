@@ -1,4 +1,4 @@
-﻿using Items;
+﻿using Items.Scripts;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

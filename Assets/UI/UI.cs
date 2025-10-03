@@ -17,18 +17,9 @@ namespace UI
 
         private GameObject _activeTab;
         private bool _isInitialized;
-        private PlayerInventory _playerInventory;
         private PlayerInputHandler _playerInputHandler;
+        private PlayerInventory _playerInventory;
         private UIInputHandler _uiInputHandler;
-
-        [Inject]
-        public void Construct(PlayerInventory playerInventory, PlayerInputHandler playerInputHandler,
-            UIInputHandler uiInputHandler)
-        {
-            _uiInputHandler = uiInputHandler;
-            _playerInputHandler = playerInputHandler;
-            _playerInventory = playerInventory;
-        }
 
         private void OnEnable()
         {
@@ -44,6 +35,15 @@ namespace UI
             _uiInputHandler.CloseMenuActionTriggered -= OnCloseMenuActionTriggered;
             _uiInputHandler.PageLeftActionTriggered -= OnPageLeftActionTriggered;
             _uiInputHandler.PageRightActionTriggered -= OnPageRightActionTriggered;
+        }
+
+        [Inject]
+        public void Construct(PlayerInventory playerInventory, PlayerInputHandler playerInputHandler,
+            UIInputHandler uiInputHandler)
+        {
+            _uiInputHandler = uiInputHandler;
+            _playerInputHandler = playerInputHandler;
+            _playerInventory = playerInventory;
         }
 
         private void OnOpenMenuActionTriggered()

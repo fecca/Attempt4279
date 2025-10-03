@@ -7,18 +7,18 @@ namespace Players
     public class PlayerSpawner : MonoBehaviour
     {
         public GameObject playerPrefab;
-        
+
         private IObjectResolver _objectResolver;
+
+        private void Start()
+        {
+            Spawn();
+        }
 
         [Inject]
         public void Construct(IObjectResolver objectResolver)
         {
             _objectResolver = objectResolver;
-        }
-
-        private void Start()
-        {
-            Spawn();
         }
 
         private void Spawn()

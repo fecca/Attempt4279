@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Players
 {
@@ -21,14 +20,16 @@ namespace Players
             transform.position += transform.forward * Time.deltaTime * _attackSped;
         }
 
+        private void OnCollisionEnter(Collision other)
+        {
+            Destroy(gameObject);
+        }
+
         public void Initialize(Vector3 spawnPosition, Vector3 forward, float attackSped)
         {
             _attackSped = attackSped;
             transform.position = spawnPosition + forward;
             transform.forward = forward;
         }
-
-        private void OnCollisionEnter(Collision other)
-            => Destroy(gameObject);
     }
 }

@@ -16,12 +16,6 @@ namespace Players
         private SphereCollider _collider;
         private InteractableObserver _interactableObserver;
 
-        [Inject]
-        public void Construct(InteractableObserver interactableObserver)
-        {
-            _interactableObserver = interactableObserver;
-        }
-
         private void Awake()
         {
             _collider = GetComponent<SphereCollider>();
@@ -72,6 +66,12 @@ namespace Players
 
             _closestInteractable.Unhighlight();
             _closestInteractable = null;
+        }
+
+        [Inject]
+        public void Construct(InteractableObserver interactableObserver)
+        {
+            _interactableObserver = interactableObserver;
         }
 
         private IInteractable GetClosestInteractable()

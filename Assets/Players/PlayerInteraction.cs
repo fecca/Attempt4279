@@ -7,17 +7,9 @@ namespace Players
     public class PlayerInteraction : MonoBehaviour
     {
         private PlayerInputHandler _inputHandler;
-        private InteractableObserver _interactableObserver;
         private IInteractable _interactable;
+        private InteractableObserver _interactableObserver;
         private InteractionActionFactory _interactionActionFactory;
-
-        [Inject]
-        public void Construct(PlayerInputHandler inputHandler, InteractableObserver interactableObserver, InteractionActionFactory interactionActionFactory)
-        {
-            _interactionActionFactory = interactionActionFactory;
-            _interactableObserver = interactableObserver;
-            _inputHandler = inputHandler;
-        }
 
         private void Start()
         {
@@ -25,8 +17,19 @@ namespace Players
             _interactableObserver.NewInteractableFound += OnNewInteractableFound;
         }
 
+        [Inject]
+        public void Construct(PlayerInputHandler inputHandler, InteractableObserver interactableObserver,
+            InteractionActionFactory interactionActionFactory)
+        {
+            _interactionActionFactory = interactionActionFactory;
+            _interactableObserver = interactableObserver;
+            _inputHandler = inputHandler;
+        }
+
         private void OnNewInteractableFound(IInteractable interactable)
-            => _interactable = interactable;
+        {
+            _interactable = interactable;
+        }
 
         private void OnInteraction()
         {

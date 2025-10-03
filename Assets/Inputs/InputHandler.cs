@@ -1,5 +1,4 @@
-﻿using Commons;
-using Players;
+﻿using Players;
 using UnityEngine;
 using VContainer;
 
@@ -10,13 +9,6 @@ namespace Inputs
         private IInputHandler _inputHandler;
         private PlayerInputHandler _playerInputHandler;
         private UIInputHandler _uiInputHandler;
-
-        [Inject]
-        public void Construct(PlayerInputHandler playerInputHandler, UIInputHandler uiInputHandler)
-        {
-            _playerInputHandler = playerInputHandler;
-            _uiInputHandler = uiInputHandler;
-        }
 
         private void Start()
         {
@@ -31,6 +23,13 @@ namespace Inputs
         private void Update()
         {
             _inputHandler.Update();
+        }
+
+        [Inject]
+        public void Construct(PlayerInputHandler playerInputHandler, UIInputHandler uiInputHandler)
+        {
+            _playerInputHandler = playerInputHandler;
+            _uiInputHandler = uiInputHandler;
         }
 
         private void OnUiCloseMenuActionTriggered()

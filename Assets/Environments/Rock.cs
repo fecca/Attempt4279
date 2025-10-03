@@ -9,15 +9,9 @@ namespace Environments
     public class Rock : MonoBehaviour, IInteractable
     {
         [SerializeField] private ItemBlueprint itemBlueprint;
-
-        private Vector3 _originalScale;
         private InteractionActionFactory _interactionActionFactory;
 
-        [Inject]
-        public void Construct(InteractionActionFactory interactionActionFactory)
-        {
-            _interactionActionFactory = interactionActionFactory;
-        }
+        private Vector3 _originalScale;
 
         private void Awake()
         {
@@ -49,5 +43,11 @@ namespace Environments
 
         public string GetText()
             => "Smash";
+
+        [Inject]
+        public void Construct(InteractionActionFactory interactionActionFactory)
+        {
+            _interactionActionFactory = interactionActionFactory;
+        }
     }
 }

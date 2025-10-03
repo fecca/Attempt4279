@@ -6,20 +6,28 @@ namespace Players
 {
     public class PlayerAttack : MonoBehaviour
     {
-        private IWeapon _playerWeapon;
         private PlayerInputHandler _inputHandler;
+        private IWeapon _playerWeapon;
+
+        private void Awake()
+        {
+            _playerWeapon = GetComponent<PlayerWeapon>();
+        }
+
+        private void Start()
+        {
+            _inputHandler.AttackActionTriggered += OnAttackTriggered;
+        }
 
         [Inject]
         public void Construct(PlayerInputHandler inputHandler)
-            => _inputHandler = inputHandler;
-
-        private void Awake()
-            => _playerWeapon = GetComponent<PlayerWeapon>();
-
-        private void Start()
-            => _inputHandler.AttackActionTriggered += OnAttackTriggered;
+        {
+            _inputHandler = inputHandler;
+        }
 
         private void OnAttackTriggered()
-            => _playerWeapon.Attack();
+        {
+            _playerWeapon.Attack();
+        }
     }
 }

@@ -13,12 +13,8 @@ namespace UI
         [SerializeField] private TMP_Text interactLabel;
 
         private IInteractable _interactable;
-        private PlayerSpawner _spawner;
         private InteractableObserver _interactableObserver;
-
-        [Inject]
-        public void Construct(InteractableObserver interactableObserver)
-            => _interactableObserver = interactableObserver;
+        private PlayerSpawner _spawner;
 
         private void Start()
         {
@@ -31,6 +27,12 @@ namespace UI
 
             var p = camera.WorldToScreenPoint(_interactable.GetPosition());
             interactLabel.rectTransform.position = p;
+        }
+
+        [Inject]
+        public void Construct(InteractableObserver interactableObserver)
+        {
+            _interactableObserver = interactableObserver;
         }
 
         private void OnNewInteractableFound(IInteractable interactable)

@@ -3,29 +3,12 @@ using System.Linq;
 using Interactions;
 using Items;
 using UnityEngine;
-using VContainer;
 
 namespace Loot
 {
     public class WorldLootObject : MonoBehaviour, IInteractable
     {
         private List<LootItem> _lootItems;
-        private InteractionActionFactory _interactionActionFactory;
-
-        public void Initialize(InteractionActionFactory interactionActionFactory, Vector3 position, List<LootItem> item)
-        {
-            _interactionActionFactory = interactionActionFactory;
-            _lootItems = item;
-
-            gameObject.AddComponent<BoxCollider>();
-            gameObject.AddComponent<Rigidbody>();
-            transform.position = position;
-
-            var primitive = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            primitive.transform.localScale = Vector3.one * 0.4f;
-            primitive.transform.SetParent(transform);
-            primitive.transform.localPosition = Vector3.zero;
-        }
 
         public IInteractionAction Interact()
         {
@@ -50,5 +33,19 @@ namespace Loot
 
         public string GetText()
             => "Pick Up";
+
+        public void Initialize(Vector3 position, List<LootItem> item)
+        {
+            _lootItems = item;
+
+            gameObject.AddComponent<BoxCollider>();
+            gameObject.AddComponent<Rigidbody>();
+            transform.position = position;
+
+            var primitive = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            primitive.transform.localScale = Vector3.one * 0.4f;
+            primitive.transform.SetParent(transform);
+            primitive.transform.localPosition = Vector3.zero;
+        }
     }
 }

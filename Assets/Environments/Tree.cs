@@ -2,16 +2,15 @@
 using Interactions;
 using Items;
 using UnityEngine;
-using VContainer;
 
 namespace Environments
 {
     public class Tree : MonoBehaviour, IInteractable
     {
         [SerializeField] private ItemBlueprint itemBlueprint;
+        private InteractionActionFactory _interactionActionFactory;
 
         private Vector3 _originalScale;
-        private InteractionActionFactory _interactionActionFactory;
 
         private void Awake()
         {

@@ -1,25 +1,16 @@
-using Commons;
 using Movements;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using VContainer;
 
 namespace Players
 {
     public class PlayerMovement : MonoBehaviour
     {
+        private PlayerInputHandler _inputHandler;
         private Vector2 _moveInput;
 
         private IMovement _movement;
-        private PlayerInputHandler _inputHandler;
         private PlayerAttributes _playerAttributes;
-
-        [Inject]
-        public void Construct(PlayerInputHandler inputHandler, PlayerAttributes playerAttributes)
-        {
-            _playerAttributes = playerAttributes;
-            _inputHandler = inputHandler;
-        }
 
         private void Start()
         {
@@ -28,10 +19,21 @@ namespace Players
         }
 
         private void Update()
-            => Move();
+        {
+            Move();
+        }
+
+        [Inject]
+        public void Construct(PlayerInputHandler inputHandler, PlayerAttributes playerAttributes)
+        {
+            _playerAttributes = playerAttributes;
+            _inputHandler = inputHandler;
+        }
 
         private void OnMove(Vector2 moveInput)
-            => _moveInput = moveInput;
+        {
+            _moveInput = moveInput;
+        }
 
         private void Move()
         {

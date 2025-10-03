@@ -1,53 +1,24 @@
 ﻿using System.Collections;
 using Items;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace Players
 {
     public class Hammer : MonoBehaviour, IWeapon
     {
-        private const float Cooldown = 0.5f;
+        private const float Cooldown = 0.3f;
         [SerializeField] private Transform pivotPoint;
-        [SerializeField] private BoxCollider collider;
-        private bool _isOnCooldown;
+        [SerializeField] private PlayableDirector playableDirector;
 
-        private void Awake()
-        {
-            collider.enabled = false;
-        }
+        private bool _isOnCooldown;
 
         public void Attack()
         {
             if (_isOnCooldown) return;
 
-            StartCoroutine(nameof(StartAttack));
+            playableDirector.Play();
             StartCoroutine(nameof(StartCooldown));
-        }
-
-        private IEnumerator StartAttack()
-        {
-            collider.enabled = true;
-            float angle;
-            var timer = 0f;
-            const float time = 0.2f;
-            while (timer < time)
-            {
-                angle = Time.deltaTime * 90 * 4.0f;
-                transform.RotateAround(pivotPoint.position, pivotPoint.right, angle);
-                timer += Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-
-            timer = 0f;
-            while (timer < time)
-            {
-                angle = Time.deltaTime * 90 * 4.0f;
-                transform.RotateAround(pivotPoint.position, pivotPoint.right, -angle);
-                timer += Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-
-            collider.enabled = false;
         }
 
         private IEnumerator StartCooldown()

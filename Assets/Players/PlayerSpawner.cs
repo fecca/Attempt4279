@@ -9,6 +9,7 @@ namespace Players
         public GameObject playerPrefab;
 
         private IObjectResolver _objectResolver;
+        private PlayerObserver _playerObserver;
 
         private void Start()
         {
@@ -16,14 +17,16 @@ namespace Players
         }
 
         [Inject]
-        public void Construct(IObjectResolver objectResolver)
+        public void Construct(IObjectResolver objectResolver, PlayerObserver playerObserver)
         {
+            _playerObserver = playerObserver;
             _objectResolver = objectResolver;
         }
 
         private void Spawn()
         {
-            _objectResolver.Instantiate(playerPrefab, transform.position, Quaternion.identity, transform);
+            var player = _objectResolver.Instantiate(playerPrefab, transform.position, Quaternion.identity, transform);
+            _playerObserver.NotifyPlayerSpawned(player.transform);
         }
     }
 }

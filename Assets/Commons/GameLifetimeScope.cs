@@ -19,6 +19,7 @@ namespace Commons
             builder.Register<UIInputHandler>(Lifetime.Scoped);
             builder.Register<InputActionMapController>(Lifetime.Scoped);
             builder.Register<PlayerInventory>(Lifetime.Scoped);
+            builder.Register<PlayerObserver>(Lifetime.Scoped);
             builder.Register<InteractionActionFactory>(Lifetime.Scoped);
             builder.Register<InteractableObserver>(Lifetime.Scoped);
             builder.RegisterInstance(playerAttributes);

@@ -15,6 +15,6 @@ MonoBehaviour:
   result: {fileID: 11400000, guid: 1b880527e93433f4d821a765e40dfe99, type: 2}
   requirements:
   - resource: {fileID: 11400000, guid: 0109590b2a747b44db6502acd31bd14a, type: 2}
-    amount: 6
+    amount: 2
   - resource: {fileID: 11400000, guid: e1d0bc6278ac65a40868697e174b30ed, type: 2}
-    amount: 10
+    amount: 2

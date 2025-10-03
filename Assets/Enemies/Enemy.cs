@@ -1,6 +1,7 @@
 ﻿using Items.Scripts;
 using Loot;
 using Movements;
+using Players;
 using UnityEngine;
 using UnityEngine.AI;
 using VContainer;
@@ -10,20 +11,18 @@ namespace Enemies
 {
     public class Enemy : MonoBehaviour
     {
-        private const int MaxHealth = 3;
         private const int PatrolRadius = 3;
         private const int LootRolls = 2;
 
         [SerializeField] private LootTable lootTable;
 
-        private int _currentHealth;
-        private bool _isBeingAttacked;
         private LootSystem _lootSystem;
         private IMovement _movement;
+        private PlayerObserver _playerObserver;
+        private Transform _targetPlayer;
 
         private void Awake()
         {
-            _currentHealth = MaxHealth;
             _movement = new NavMeshAgentMovement(GetComponent<NavMeshAgent>());
         }
 
@@ -31,7 +30,7 @@ namespace Enemies
         {
             if (_movement.IsMoving()) return;
 
-            var position = PickNewRandomPosition();
+            var position = _targetPlayer?.position ?? PickNewRandomPosition();
             _movement.Move(position);
         }
 
@@ -41,30 +40,23 @@ namespace Enemies
         }
 
         [Inject]
-        public void Construct(LootSystem lootSystem)
+        public void Construct(LootSystem lootSystem, PlayerObserver playerObserver)
         {
+            _playerObserver = playerObserver;
             _lootSystem = lootSystem;
+
+            _playerObserver.PlayerSpawned += OnPlayerSpawned;
+        }
+
+        private void OnPlayerSpawned(Transform targetPlayer)
+        {
+            _targetPlayer = targetPlayer;
         }
 
         private Vector3 PickNewRandomPosition()
         {
             var randomPosition = Random.insideUnitCircle * PatrolRadius;
             return transform.position + new Vector3(randomPosition.x, transform.position.y, randomPosition.y);
-        }
-
-        public void OnAttacked()
-        {
-            if (_isBeingAttacked) return;
-
-            _isBeingAttacked = true;
-            EndAttacked();
-        }
-
-        private void EndAttacked()
-        {
-            _isBeingAttacked = false;
-            _currentHealth--;
-            if (_currentHealth <= 0) Destroy(gameObject);
         }
 
         private void TakeDamage()

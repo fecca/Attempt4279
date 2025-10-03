@@ -1,6 +1,6 @@
-﻿using Loot;
+﻿using Items;
+using Loot;
 using Movements;
-using Players;
 using UnityEngine;
 using UnityEngine.AI;
 using VContainer;
@@ -37,7 +37,7 @@ namespace Enemies
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.GetComponent<Projectile>()) TakeDamage();
+            if (other.gameObject.GetComponentInParent<IWeapon>() != null) TakeDamage();
         }
 
         [Inject]

@@ -26,5 +26,10 @@ namespace Players
         {
             return _items;
         }
+
+        public string GetWeapon()
+        {
+            return "Hammer";
+        }
     }
 }

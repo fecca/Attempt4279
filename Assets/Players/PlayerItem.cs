@@ -12,14 +12,11 @@ namespace Players
             Amount = amount;
         }
 
-        public string Id
-            => Blueprint.id;
-
         public int Amount { get; set; }
 
         public override string ToString()
         {
-            return $"{Id}, Amount: {Amount}";
+            return $"{Blueprint.id}, Amount: {Amount}";
         }
     }
 }

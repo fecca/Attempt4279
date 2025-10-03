@@ -25,3 +25,6 @@ MonoBehaviour:
   - Blueprint: {fileID: 11400000, guid: 0109590b2a747b44db6502acd31bd14a, type: 2}
     Amount: 1
     Weight: 1
+  - Blueprint: {fileID: 11400000, guid: 1b880527e93433f4d821a765e40dfe99, type: 2}
+    Amount: 1
+    Weight: 20

@@ -77,5 +77,11 @@ namespace Enemies
         {
             _lootSystem.DropLoot(transform.position, lootTable.items, LootRolls);
         }
+
+        [ContextMenu("kill")]
+        public void Kill()
+        {
+            TakeDamage();
+        }
     }
 }

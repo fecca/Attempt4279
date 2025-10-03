@@ -14,10 +14,18 @@ namespace Interactions
 
         public IInteractionAction Create(IInteractionAction interactionAction)
         {
-            if (interactionAction is ItemInteractionAction action)
+            if (interactionAction == null) return new EmptyInteractionAction();
+
+            if (interactionAction is ItemInteractionAction itemInteractionAction)
             {
-                action.AddDependency(_playerInventory);
-                return action;
+                itemInteractionAction.AddDependency(_playerInventory);
+                return itemInteractionAction;
+            }
+
+            if (interactionAction is CraftingInteractionAction craftingInteractionAction)
+            {
+                craftingInteractionAction.AddDependency(_playerInventory);
+                return craftingInteractionAction;
             }
 
             throw new NotImplementedException($"Type {interactionAction.GetType()} not implemented");

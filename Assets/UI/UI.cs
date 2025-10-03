@@ -9,11 +9,16 @@ namespace UI
     public class UI : MonoBehaviour
     {
         [SerializeField] private GameObject panel;
+
+        [SerializeField] private GameObject equipmentPanel;
+        [SerializeField] private Image weaponImage;
+
         [SerializeField] private GameObject itemsPanel;
-        [SerializeField] private GameObject craftingPanel;
         [SerializeField] private Image itemsTab;
-        [SerializeField] private Image craftingTab;
         [SerializeField] private InventoryItem itemPrefab;
+
+        [SerializeField] private GameObject craftingPanel;
+        [SerializeField] private Image craftingTab;
 
         private GameObject _activeTab;
         private bool _isInitialized;
@@ -50,6 +55,20 @@ namespace UI
         {
             panel.SetActive(true);
 
+            PopulateEquipmentItems();
+            PopulateInventoryItems();
+        }
+
+        private void PopulateEquipmentItems()
+        {
+            var weapon = _playerInventory.GetWeapon();
+            if (weapon == null) return;
+
+            weaponImage.sprite = weapon.icon;
+        }
+
+        private void PopulateInventoryItems()
+        {
             foreach (var inventoryItem in itemsPanel.GetComponentsInChildren<InventoryItem>())
                 Destroy(inventoryItem.gameObject);
 
@@ -70,6 +89,7 @@ namespace UI
             itemsTab.color = new Color(0f, 0f, 1f, 0.75f);
             craftingTab.color = new Color(0f, 0f, 0f, 0.75f);
             itemsPanel.SetActive(true);
+            equipmentPanel.SetActive(true);
             craftingPanel.SetActive(false);
         }
 
@@ -78,6 +98,7 @@ namespace UI
             itemsTab.color = new Color(0f, 0f, 0f, 0.75f);
             craftingTab.color = new Color(0f, 0f, 1f, 0.75f);
             itemsPanel.SetActive(false);
+            equipmentPanel.SetActive(false);
             craftingPanel.SetActive(true);
         }
     }

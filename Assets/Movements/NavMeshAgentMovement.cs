@@ -28,7 +28,7 @@ namespace Movements
             }
 
             var ray = new Ray(position, Vector3.down * 10);
-            Debug.DrawRay(ray.origin, ray.direction * 10, Color.green, 0.1f);
+            Debug.DrawRay(ray.origin, ray.direction * 10, Color.green, 10.1f);
 
             if (!Physics.Raycast(ray, out var hitInfo, 10.0f, LayerMask.GetMask("Ground"))) return;
 

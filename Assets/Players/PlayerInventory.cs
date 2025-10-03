@@ -15,18 +15,20 @@ namespace Players
         {
             if (string.IsNullOrEmpty(item.Blueprint.id)) return;
 
-            var existingItem = _items.FirstOrDefault(i => i.Blueprint.id == item.Blueprint.id);
-            if (existingItem != null)
+            var playerItem = _items.FirstOrDefault(i => i.Blueprint.id == item.Blueprint.id);
+            if (playerItem != null)
             {
-                existingItem.Amount += item.Amount;
+                playerItem.Amount += item.Amount;
             }
             else
             {
-                var newItem = new PlayerItem(item.Blueprint, item.Amount);
-                _items.Add(newItem);
+                playerItem = new PlayerItem(item.Blueprint, item.Amount);
+                _items.Add(playerItem);
             }
 
-            Debug.Log($"Adding {item.Amount} {item.Blueprint.id} to the inventory");
+            ItemAdded(playerItem);
+
+            Debug.Log($"Adding {playerItem.Amount} {playerItem.Blueprint.id} to the inventory");
         }
 
         public void Remove(ItemInstance item)

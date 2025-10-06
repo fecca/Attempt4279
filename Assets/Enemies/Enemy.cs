@@ -11,7 +11,7 @@ namespace Enemies
 {
     public class Enemy : MonoBehaviour
     {
-        private const int PatrolRadius = 3;
+        private const int PatrolRadius = 10;
         private const int LootRolls = 2;
 
         [SerializeField] private LootTable lootTable;
@@ -30,7 +30,7 @@ namespace Enemies
         {
             if (_movement.IsMoving()) return;
 
-            var position = _targetPlayer?.position ?? PickNewRandomPosition();
+            var position = PickNewRandomPosition();
             _movement.Move(position);
         }
 

@@ -28,9 +28,9 @@ namespace Movements
             }
 
             var ray = new Ray(position + Vector3.up * 10f, -_agent.transform.up);
-            Debug.DrawRay(ray.origin, ray.direction * 10, Color.green, 10.1f);
+            Debug.DrawRay(ray.origin, ray.direction * 20, Color.green, 1.0f);
 
-            if (!Physics.Raycast(ray, out var hitInfo, 10.0f, LayerMask.GetMask("Ground"))) return;
+            if (!Physics.Raycast(ray, out var hitInfo, 20.0f, LayerMask.GetMask("Ground"))) return;
 
             _agent.speed = movementSpeed;
             _agent.destination = hitInfo.point;

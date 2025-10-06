@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 
 namespace CityPeople
 {
@@ -19,33 +16,31 @@ namespace CityPeople
         public List<Material> MaterialRef;
         public Texture[] Textures;
 
-        private int currentCamera = 0;
-        private Vector3 targetPosition;
-        private Vector3 startPosition;
-        private float motionTime = 2.1f;
+        private int currentCamera;
         private Collider hoveredCollider;
-        private Vector3 hoveredStoredPos;
-        private Vector3 hoveredStoredScale;
-        private Quaternion hoveredStoredRotation;
         private CityPeople hoveredPeople;
-       
+        private Vector3 hoveredStoredPos;
+        private Quaternion hoveredStoredRotation;
+        private Vector3 hoveredStoredScale;
+        private float motionTime = 2.1f;
+        private Vector3 startPosition;
+        private Vector3 targetPosition;
 
-        void Start()
+
+        private void Start()
         {
             motionTime = motionTimeTotal + 0.1f;
             DisableArrows();
             if (cameraTargets.Length > 0)
             {
                 var startCam = cameraTargets[currentCamera];
-                if (startCam != null)
-                {
-                    transform.position = cameraTargets[currentCamera].transform.position;
-                }
+                if (startCam != null) transform.position = cameraTargets[currentCamera].transform.position;
             }
+
             TextCharName.text = HintMessage;
         }
 
-        void Update()
+        private void Update()
         {
             if (motionTime < motionTimeTotal)
             {
@@ -55,17 +50,10 @@ namespace CityPeople
                 transform.position = Vector3.Lerp(startPosition, targetPosition, easedTime);
             }
 
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                OnRightClick();
-            }
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) OnRightClick();
 
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                OnLeftClick();
-            }
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) OnLeftClick();
 
-            
 
             CharacterClicks(); //notOK
             MouseMove();
@@ -74,28 +62,23 @@ namespace CityPeople
 
         private void HoverSpin()
         {
-            if (hoveredPeople != null)
-            {
-                hoveredPeople.transform.Rotate(0, 90f * Time.deltaTime, 0);
-            }
+            if (hoveredPeople != null) hoveredPeople.transform.Rotate(0, 90f * Time.deltaTime, 0);
         }
 
-        void MouseMove()
+        private void MouseMove()
         {
-            Vector3 mousePos = Input.mousePosition;
+            var mousePos = Input.mousePosition;
             if (mousePos.x >= 0 && mousePos.x <= Screen.width && mousePos.y >= 0 && mousePos.y <= Screen.height)
             {
-                Ray ray = Camera.main.ScreenPointToRay(mousePos);
+                var ray = Camera.main.ScreenPointToRay(mousePos);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    Collider currentCollider = hit.collider;
+                    var currentCollider = hit.collider;
                     if (currentCollider != hoveredCollider)
                     {
-                        if (hoveredCollider != null)
-                        {
-                            ColliderExit(hoveredCollider);
-                        }
+                        if (hoveredCollider != null) ColliderExit(hoveredCollider);
+
                         ColliderEnter(currentCollider);
                         hoveredCollider = currentCollider;
                     }
@@ -117,9 +100,9 @@ namespace CityPeople
             if (hoveredPeople != null)
             {
                 if (TextCharName != null)
-                {
-                    TextCharName.text = $"{hoveredPeople.transform.parent.name} > {hoveredPeople.name} (mat: {hoveredPeople.CurrentPaletteName})";
-                }
+                    TextCharName.text =
+                        $"{hoveredPeople.transform.parent.name} > {hoveredPeople.name} (mat: {hoveredPeople.CurrentPaletteName})";
+
                 var t = hoveredPeople.gameObject.transform;
                 hoveredStoredPos = t.position;
                 hoveredStoredScale = t.localScale;
@@ -131,12 +114,13 @@ namespace CityPeople
 
         private string CharacterInfo(CityPeople cityPeople)
         {
-            string s = $"{cityPeople.transform.parent.name} > {cityPeople.name} ";
+            var s = $"{cityPeople.transform.parent.name} > {cityPeople.name} ";
             var rends = cityPeople.GetComponentsInChildren<Renderer>();
             foreach (var rend in rends)
             {
-              // var matName = mesh.sharedMaterial.name 
+                // var matName = mesh.sharedMaterial.name 
             }
+
             return s;
         }
 
@@ -149,33 +133,28 @@ namespace CityPeople
                 t.position = hoveredStoredPos;
                 t.localScale = hoveredStoredScale;
             }
-            if (TextCharName != null)
-            {
-                TextCharName.text = HintMessage;
-            }
+
+            if (TextCharName != null) TextCharName.text = HintMessage;
+
             hoveredPeople = null;
         }
 
-        void CharacterClicks()
+        private void CharacterClicks()
         {
-
             if (Input.GetMouseButtonDown(0))
-            {
-                if (hoveredPeople !=  null)
+                if (hoveredPeople != null)
                 {
                     var idx = MaterialRef.FindIndex(m => m.name == hoveredPeople.CurrentPaletteName);
                     idx += 1;
                     if (idx == MaterialRef.Count) idx = 0;
                     hoveredPeople.SetPalette(MaterialRef[idx]);
                     if (TextCharName != null)
-                    {
-                        TextCharName.text = $"{hoveredPeople.transform.parent.name} > {hoveredPeople.name} (mat: {hoveredPeople.CurrentPaletteName})";
-                    }
+                        TextCharName.text =
+                            $"{hoveredPeople.transform.parent.name} > {hoveredPeople.name} (mat: {hoveredPeople.CurrentPaletteName})";
                 }
-            }
         }
 
-        void GoTo(Camera cam)
+        private void GoTo(Camera cam)
         {
             startPosition = transform.position;
             targetPosition = cam.transform.position;
@@ -205,7 +184,6 @@ namespace CityPeople
         }
 
 
-
         private void DisableArrows()
         {
             if (TextRight != null && TextLeft != null)
@@ -213,9 +191,6 @@ namespace CityPeople
                 TextRight.SetActive(currentCamera < cameraTargets.Length - 1);
                 TextLeft.SetActive(currentCamera > 0);
             }
-
         }
     }
-
 }
-    

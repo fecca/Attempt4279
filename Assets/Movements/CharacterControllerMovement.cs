@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Movements
 {
@@ -33,9 +32,13 @@ namespace Movements
         }
 
         public float GetVelocity()
-            => new Vector2(_characterController.velocity.x, _characterController.velocity.z).magnitude;
+        {
+            return new Vector2(_characterController.velocity.x, _characterController.velocity.z).magnitude;
+        }
 
         public bool IsMoving()
-            => GetVelocity() > 0.0f;
+        {
+            return GetVelocity() > 0.0f;
+        }
     }
 }

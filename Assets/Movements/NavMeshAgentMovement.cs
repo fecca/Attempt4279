@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Movements
@@ -21,7 +22,7 @@ namespace Movements
 
         public float GetVelocity()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void Move(Vector3 position = default, float movementSpeed = 1, float turnSpeed = 1)

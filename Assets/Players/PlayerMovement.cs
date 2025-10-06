@@ -10,8 +10,8 @@ namespace Players
 
         [SerializeField] private Animator animator;
         private PlayerInputHandler _inputHandler;
-        private Vector2 _moveInput;
         private bool _isMoving;
+        private Vector2 _moveInput;
 
         private IMovement _movement;
         private PlayerAttributes _playerAttributes;
@@ -36,6 +36,8 @@ namespace Players
         }
 
         private void OnMove(Vector2 moveInput)
-            => _moveInput = moveInput;
+        {
+            _moveInput = moveInput;
+        }
     }
 }

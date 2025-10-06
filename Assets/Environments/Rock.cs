@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Interactions;
+﻿using Interactions;
 using Items.Scripts;
 using UnityEngine;
 
@@ -16,12 +15,12 @@ namespace Environments
             _originalScale = transform.localScale;
         }
 
-        public IInteractionAction Interact()
+        public IInteractionResult Interact()
         {
             transform.localScale = _originalScale * 0.25f;
             Destroy(this);
 
-            return new ItemInteractionAction(new List<ItemInstance> { new(itemBlueprint, 1) });
+            return new ItemInteractionResult(new ItemInstance(itemBlueprint, 1));
         }
 
         public Vector3 GetPosition()

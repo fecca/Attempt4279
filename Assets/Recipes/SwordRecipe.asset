@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36fc421059b94bdca86b00f8a1a9f38a, type: 3}
-  m_Name: HammerRecipe
+  m_Name: SwordRecipe
   m_EditorClassIdentifier: 
-  id: hammer_recipe
+  id: sword_recipe
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  result: {fileID: 11400000, guid: 1b880527e93433f4d821a765e40dfe99, type: 2}
+  result: {fileID: 11400000, guid: e1d4d2475352c884ca640e00b6b33eb9, type: 2}
   requirements:
   - resource: {fileID: 11400000, guid: 0109590b2a747b44db6502acd31bd14a, type: 2}
-    amount: 1
+    amount: 3
   - resource: {fileID: 11400000, guid: e1d0bc6278ac65a40868697e174b30ed, type: 2}
-    amount: 1
+    amount: 3

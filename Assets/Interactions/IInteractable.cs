@@ -4,7 +4,7 @@ namespace Interactions
 {
     public interface IInteractable
     {
-        IInteractionAction Interact();
+        IInteractionResult Interact();
         Vector3 GetPosition();
         void Highlight();
         void Unhighlight();

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4583d3a2ee9a488cbee3e95d7de6c6af, type: 3}
-  m_Name: Hammer
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  id: hammer
-  icon: {fileID: 21300000, guid: 4c46d6b7f210d8f478b7b7e0cd8d4ffb, type: 3}
+  id: sword
+  icon: {fileID: 21300000, guid: 5d72a65720ac3724ea4ef0d4e684799f, type: 3}
   stats:
     strength: 0
     dexterity: 0
@@ -25,12 +25,12 @@ MonoBehaviour:
     lifeRegen: 0
     mana: 0
     manaRegen: 0
-    damage: 1
+    damage: 3
     armor: 0
   requirements:
-    strength: 1
-    dexterity: 1
-    intelligence: 1
+    strength: 3
+    dexterity: 3
+    intelligence: 3
     stamina: 0
     wisdom: 0
     charisma: 0

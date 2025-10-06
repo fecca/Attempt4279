@@ -17,7 +17,7 @@ namespace Environments
             _originalScale = transform.localScale;
         }
 
-        public IInteractionAction Interact()
+        public IInteractionResult Interact()
         {
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().useGravity = true;
@@ -25,7 +25,9 @@ namespace Environments
             transform.localScale = _originalScale;
             Destroy(this);
 
-            return new ItemInteractionAction(new List<ItemInstance> { new(itemBlueprint, 1) });
+            return new ItemInteractionResult(new ItemInstance(itemBlueprint, 1));
+
+            // return new ItemInteractionAction(new List<ItemInstance> { new(itemBlueprint, 1) });
         }
 
         public Vector3 GetPosition()

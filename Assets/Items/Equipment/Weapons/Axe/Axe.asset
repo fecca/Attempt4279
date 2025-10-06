@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4583d3a2ee9a488cbee3e95d7de6c6af, type: 3}
-  m_Name: Hammer
+  m_Name: Axe
   m_EditorClassIdentifier: 
-  id: hammer
-  icon: {fileID: 21300000, guid: 4c46d6b7f210d8f478b7b7e0cd8d4ffb, type: 3}
+  id: axe
+  icon: {fileID: 21300000, guid: f115fafff390ac44a86aed37306f8782, type: 3}
   stats:
     strength: 0
     dexterity: 0
@@ -25,12 +25,12 @@ MonoBehaviour:
     lifeRegen: 0
     mana: 0
     manaRegen: 0
-    damage: 1
+    damage: 2
     armor: 0
   requirements:
-    strength: 1
-    dexterity: 1
-    intelligence: 1
+    strength: 2
+    dexterity: 2
+    intelligence: 2
     stamina: 0
     wisdom: 0
     charisma: 0

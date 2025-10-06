@@ -6,29 +6,53 @@ using UnityEngine;
 
 namespace Players
 {
+    public class PlayerCraftingRecipe
+    {
+        public readonly CraftingRecipeBlueprint Blueprint;
+
+        public PlayerCraftingRecipe(CraftingRecipeBlueprint blueprint)
+        {
+            Blueprint = blueprint;
+        }
+    }
+
     public class PlayerInventory
     {
         private readonly List<PlayerItem> _items = new();
+        private readonly List<PlayerCraftingRecipe> _craftingRecipes = new();
         public event Action<PlayerItem> ItemAdded = _ => { };
 
         public void Add(ItemInstance item)
         {
             if (string.IsNullOrEmpty(item.Blueprint.id)) return;
 
-            var playerItem = _items.FirstOrDefault(i => i.Blueprint.id == item.Blueprint.id);
-            if (playerItem != null)
+            switch (item.Blueprint)
             {
-                playerItem.Amount += item.Amount;
-            }
-            else
-            {
-                playerItem = new PlayerItem(item.Blueprint, item.Amount);
-                _items.Add(playerItem);
-            }
+                case EquipmentItemBlueprint or ResourceItemBlueprint:
+                {
+                    var playerItem = _items.FirstOrDefault(i => i.Blueprint.id == item.Blueprint.id);
+                    if (playerItem != null)
+                    {
+                        playerItem.Amount += item.Amount;
+                    }
+                    else
+                    {
+                        playerItem = new PlayerItem(item.Blueprint, item.Amount);
+                        _items.Add(playerItem);
+                    }
 
-            ItemAdded(playerItem);
+                    ItemAdded(playerItem);
 
-            Debug.Log($"Adding {playerItem.Amount} {playerItem.Blueprint.id} to the inventory");
+                    Debug.Log($"Adding {playerItem.Amount} {playerItem.Blueprint.id} to the inventory");
+
+                    break;
+                }
+                case CraftingRecipeBlueprint blueprint:
+                    if (_craftingRecipes.Any(i => i.Blueprint.id == item.Blueprint.id)) return;
+                    var playerRecipe = new PlayerCraftingRecipe(blueprint);
+                    _craftingRecipes.Add(playerRecipe);
+                    break;
+            }
         }
 
         public void Remove(ItemInstance item)
@@ -44,15 +68,38 @@ namespace Players
             Debug.Log($"Removing {item.Amount} {item.Blueprint.id} from the inventory");
         }
 
+        public void Remove(List<ItemInstance> items)
+            => items.ForEach(Remove);
+
         public List<PlayerItem> GetItems()
         {
             return _items;
+        }
+
+        public List<PlayerCraftingRecipe> GetRecipes()
+        {
+            return _craftingRecipes;
         }
 
         public EquipmentItemBlueprint GetWeapon()
         {
             var weapon = _items.FirstOrDefault(i => i.Blueprint is EquipmentItemBlueprint);
             return weapon?.Blueprint as EquipmentItemBlueprint;
+        }
+
+        public bool HasResources(List<CraftingRecipeRequirement> blueprintRequirements)
+        {
+            foreach (var recipeRequirement in blueprintRequirements)
+            {
+                var existingAmount =
+                    _items.FirstOrDefault(i => i.Blueprint.id == recipeRequirement.resource.id)?.Amount ?? 0;
+                if (recipeRequirement.amount > existingAmount)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Inputs
         private IInputHandler _inputHandler;
         private PlayerInputHandler _playerInputHandler;
         private UIInputHandler _uiInputHandler;
+        private UI.UserInterfaceController _userInterfaceController;
 
         private void Start()
         {
@@ -16,8 +17,10 @@ namespace Inputs
             _uiInputHandler.Initialize();
             _inputHandler = _playerInputHandler;
 
-            _playerInputHandler.OpenMenuActionTriggered += OnPlayerOpenMenuActionTriggered;
-            _uiInputHandler.CloseMenuActionTriggered += OnUiCloseMenuActionTriggered;
+            // _playerInputHandler.OpenMenuActionTriggered += OnUiOpened;
+            // _uiInputHandler.CloseMenuActionTriggered += OnUiClosed;
+            _userInterfaceController.UiOpened += OnUserInterfaceControllerOpened;
+            _userInterfaceController.UiClosed += OnUserInterfaceControllerClosed;
         }
 
         private void Update()
@@ -26,20 +29,21 @@ namespace Inputs
         }
 
         [Inject]
-        public void Construct(PlayerInputHandler playerInputHandler, UIInputHandler uiInputHandler)
+        public void Construct(PlayerInputHandler playerInputHandler, UIInputHandler uiInputHandler, UI.UserInterfaceController userInterfaceController)
         {
+            _userInterfaceController = userInterfaceController;
             _playerInputHandler = playerInputHandler;
             _uiInputHandler = uiInputHandler;
         }
 
-        private void OnUiCloseMenuActionTriggered()
+        private void OnUserInterfaceControllerClosed()
         {
             _inputHandler.Disable();
             _inputHandler = _playerInputHandler;
             _inputHandler.Enable();
         }
 
-        private void OnPlayerOpenMenuActionTriggered()
+        private void OnUserInterfaceControllerOpened()
         {
             _inputHandler.Disable();
             _inputHandler = _uiInputHandler;

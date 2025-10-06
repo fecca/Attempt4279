@@ -35,8 +35,8 @@ namespace Players
         {
             if (_interactable == null) return;
 
-            var interactionAction = _interactable.Interact();
-            var executableAction = _interactionActionFactory.Create(interactionAction);
+            var result = _interactable.Interact();
+            var executableAction = _interactionActionFactory.Create(result);
             executableAction.Execute();
             _interactableObserver.NotifyInteraction(_interactable);
         }

@@ -8,11 +8,12 @@ namespace Loot
 {
     public class WorldLootObject : MonoBehaviour, IInteractable
     {
-        private List<LootItem> _lootItems;
+        [SerializeField]
+        private List<LootItem> lootItems;
 
-        public IInteractionAction Interact()
+        public IInteractionResult Interact()
         {
-            var items = new ItemInteractionAction(_lootItems
+            var items = new ItemInteractionResult(lootItems
                 .Select(lootItem => new ItemInstance(lootItem.Blueprint, lootItem.Amount)).ToList());
             Destroy(gameObject);
             return items;
@@ -36,7 +37,7 @@ namespace Loot
 
         public void Initialize(Vector3 position, List<LootItem> item)
         {
-            _lootItems = item;
+            lootItems = item;
 
             gameObject.AddComponent<BoxCollider>();
             gameObject.AddComponent<Rigidbody>();

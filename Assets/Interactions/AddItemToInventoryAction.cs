@@ -4,25 +4,20 @@ using Players;
 
 namespace Interactions
 {
-    public class ItemInteractionAction : IInteractionAction
+    public class AddItemToInventoryAction : IInteractionAction
     {
         private readonly List<ItemInstance> _items;
+        private readonly PlayerInventory _playerInventory;
 
-        private PlayerInventory _playerInventory;
-
-        public ItemInteractionAction(List<ItemInstance> items)
+        public AddItemToInventoryAction(PlayerInventory playerInventory, List<ItemInstance> items)
         {
+            _playerInventory = playerInventory;
             _items = items;
         }
 
         public void Execute()
         {
             _items.ForEach(item => _playerInventory.Add(item));
-        }
-
-        public void AddDependency(PlayerInventory playerInventory)
-        {
-            _playerInventory = playerInventory;
         }
     }
 }

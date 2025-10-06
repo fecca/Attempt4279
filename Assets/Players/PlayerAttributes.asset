@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: PlayerAttributes
   m_EditorClassIdentifier: 
   movementSpeed: 5
+  turnSpeed: 50
   jumpStrength: 10
   attackSpeed: 20

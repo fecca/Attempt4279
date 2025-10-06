@@ -6,8 +6,12 @@ namespace Players
 {
     public class PlayerMovement : MonoBehaviour
     {
+        private static readonly int MovementSpeed = Animator.StringToHash("MovementSpeed");
+
+        [SerializeField] private Animator animator;
         private PlayerInputHandler _inputHandler;
         private Vector2 _moveInput;
+        private bool _isMoving;
 
         private IMovement _movement;
         private PlayerAttributes _playerAttributes;
@@ -20,7 +24,8 @@ namespace Players
 
         private void Update()
         {
-            Move();
+            _movement.Move(_moveInput, _playerAttributes.movementSpeed, _playerAttributes.turnSpeed);
+            animator.SetFloat(MovementSpeed, _movement.GetVelocity());
         }
 
         [Inject]
@@ -31,14 +36,6 @@ namespace Players
         }
 
         private void OnMove(Vector2 moveInput)
-        {
-            _moveInput = moveInput;
-        }
-
-        private void Move()
-        {
-            var playerMovementSpeed = _playerAttributes.movementSpeed;
-            _movement.Move(_moveInput, playerMovementSpeed);
-        }
+            => _moveInput = moveInput;
     }
 }

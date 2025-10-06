@@ -19,7 +19,12 @@ namespace Movements
                    || (_agent.hasPath && _agent.velocity.sqrMagnitude != 0f);
         }
 
-        public void Move(Vector3 position = default, float movementSpeed = 1)
+        public float GetVelocity()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Move(Vector3 position = default, float movementSpeed = 1, float turnSpeed = 1)
         {
             if (position == default)
             {
@@ -33,6 +38,7 @@ namespace Movements
             if (!Physics.Raycast(ray, out var hitInfo, 20.0f, LayerMask.GetMask("Ground"))) return;
 
             _agent.speed = movementSpeed;
+            _agent.angularSpeed = turnSpeed;
             _agent.destination = hitInfo.point;
         }
     }

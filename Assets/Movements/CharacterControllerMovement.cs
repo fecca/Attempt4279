@@ -9,9 +9,7 @@ namespace Movements
         private Vector3 _playerVelocity;
 
         public CharacterControllerMovement(CharacterController characterController)
-        {
-            _characterController = characterController;
-        }
+            => _characterController = characterController;
 
         public void Move(Vector3 direction = default, float movementSpeed = 1, float turnSpeed = 1)
         {
@@ -32,13 +30,9 @@ namespace Movements
         }
 
         public float GetVelocity()
-        {
-            return new Vector2(_characterController.velocity.x, _characterController.velocity.z).magnitude;
-        }
+            => new Vector2(_characterController.velocity.x, _characterController.velocity.z).magnitude;
 
         public bool IsMoving()
-        {
-            return GetVelocity() > 0.0f;
-        }
+            => GetVelocity() > 0.0f;
     }
 }

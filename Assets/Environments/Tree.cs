@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Interactions;
+﻿using Interactions;
 using Items.Scripts;
 using UnityEngine;
 
@@ -13,9 +12,7 @@ namespace Environments
         private Vector3 _originalScale;
 
         private void Awake()
-        {
-            _originalScale = transform.localScale;
-        }
+            => _originalScale = transform.localScale;
 
         public IInteractionResult Interact()
         {
@@ -26,24 +23,16 @@ namespace Environments
             Destroy(this);
 
             return new ItemInteractionResult(new ItemInstance(itemBlueprint, 1));
-
-            // return new ItemInteractionAction(new List<ItemInstance> { new(itemBlueprint, 1) });
         }
 
         public Vector3 GetPosition()
-        {
-            return transform.position;
-        }
+            => transform.position;
 
         public void Highlight()
-        {
-            transform.localScale = _originalScale * 1.1f;
-        }
+            => transform.localScale = _originalScale * 1.1f;
 
         public void Unhighlight()
-        {
-            transform.localScale = _originalScale;
-        }
+            => transform.localScale = _originalScale;
 
         public string GetText()
             => "Chop";

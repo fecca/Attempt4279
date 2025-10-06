@@ -16,14 +16,10 @@ namespace Players
         }
 
         private void Update()
-        {
-            transform.position += transform.forward * Time.deltaTime * _attackSped;
-        }
+            => transform.position += transform.forward * Time.deltaTime * _attackSped;
 
         private void OnCollisionEnter(Collision other)
-        {
-            Destroy(gameObject);
-        }
+            => Destroy(gameObject);
 
         public void Initialize(Vector3 spawnPosition, Vector3 forward, float attackSped)
         {

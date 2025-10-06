@@ -30,22 +30,6 @@ namespace UI
         private UIInputHandler _uiInputHandler;
         private IObjectResolver _objectResolver;
 
-        private void OnEnable()
-        {
-            _playerInputHandler.OpenMenuActionTriggered += OnOpenMenuActionTriggered;
-            _uiInputHandler.BackMenuActionTriggered += OnBackMenuActionTriggered;
-            // _uiInputHandler.PageLeftActionTriggered += OnPageLeftActionTriggered;
-            // _uiInputHandler.PageRightActionTriggered += OnPageRightActionTriggered;
-        }
-
-        private void OnDisable()
-        {
-            _playerInputHandler.OpenMenuActionTriggered -= OnOpenMenuActionTriggered;
-            _uiInputHandler.BackMenuActionTriggered -= OnBackMenuActionTriggered;
-            // _uiInputHandler.PageLeftActionTriggered -= OnPageLeftActionTriggered;
-            // _uiInputHandler.PageRightActionTriggered -= OnPageRightActionTriggered;
-        }
-
         [Inject]
         public void Construct(PlayerInventory playerInventory, PlayerInputHandler playerInputHandler,
             UIInputHandler uiInputHandler, IObjectResolver objectResolver)
@@ -56,6 +40,18 @@ namespace UI
             _playerInventory = playerInventory;
 
             craftingInterface.Initialize(_playerInventory, _objectResolver, _uiInputHandler);
+        }
+
+        private void OnEnable()
+        {
+            _playerInputHandler.OpenMenuActionTriggered += OnOpenMenuActionTriggered;
+            _uiInputHandler.BackMenuActionTriggered += OnBackMenuActionTriggered;
+        }
+
+        private void OnDisable()
+        {
+            _playerInputHandler.OpenMenuActionTriggered -= OnOpenMenuActionTriggered;
+            _uiInputHandler.BackMenuActionTriggered -= OnBackMenuActionTriggered;
         }
 
         public void OpenCraftingUI()
@@ -103,24 +99,6 @@ namespace UI
             craftingInterface.Hide();
 
             UiClosed.Invoke();
-        }
-
-        private void OnPageLeftActionTriggered()
-        {
-            itemsTab.color = new Color(0f, 0f, 1f, 0.75f);
-            // craftingTab.color = new Color(0f, 0f, 0f, 0.75f);
-            itemsPanel.SetActive(true);
-            equipmentPanel.SetActive(true);
-            // craftingPanel.SetActive(false);
-        }
-
-        private void OnPageRightActionTriggered()
-        {
-            itemsTab.color = new Color(0f, 0f, 0f, 0.75f);
-            // craftingTab.color = new Color(0f, 0f, 1f, 0.75f);
-            itemsPanel.SetActive(false);
-            equipmentPanel.SetActive(false);
-            // craftingPanel.SetActive(true);
         }
     }
 }

@@ -9,21 +9,15 @@ namespace Movements
         private readonly NavMeshAgent _agent;
 
         public NavMeshAgentMovement(NavMeshAgent agent)
-        {
-            _agent = agent;
-        }
+            => _agent = agent;
 
         public bool IsMoving()
-        {
-            return _agent.pathPending
-                   || _agent.remainingDistance > _agent.stoppingDistance
-                   || (_agent.hasPath && _agent.velocity.sqrMagnitude != 0f);
-        }
+            => _agent.pathPending
+               || _agent.remainingDistance > _agent.stoppingDistance
+               || (_agent.hasPath && _agent.velocity.sqrMagnitude != 0f);
 
         public float GetVelocity()
-        {
-            throw new NotImplementedException();
-        }
+            => throw new NotImplementedException();
 
         public void Move(Vector3 position = default, float movementSpeed = 1, float turnSpeed = 1)
         {

@@ -34,13 +34,9 @@ namespace UI
         }
 
         public void HighLight()
-        {
-            border.SetActive(true);
-        }
+            => border.SetActive(true);
 
         public void UnHighLight()
-        {
-            border.SetActive(false);
-        }
+            => border.SetActive(false);
     }
 }

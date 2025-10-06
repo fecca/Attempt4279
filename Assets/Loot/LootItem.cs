@@ -11,8 +11,6 @@ namespace Loot
         public int Weight;
 
         public override string ToString()
-        {
-            return $"{Blueprint.id}, Amount: {Amount}";
-        }
+            => $"{Blueprint.id}, Amount: {Amount}";
     }
 }

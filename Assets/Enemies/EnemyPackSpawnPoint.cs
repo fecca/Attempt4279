@@ -9,8 +9,6 @@ namespace Enemies
         [SerializeField] private EnemyPack enemyPrefab;
 
         public void Spawn(IObjectResolver objectResolver)
-        {
-            objectResolver.Instantiate(enemyPrefab, transform.position, Quaternion.identity, transform);
-        }
+            => objectResolver.Instantiate(enemyPrefab, transform.position, Quaternion.identity, transform);
     }
 }

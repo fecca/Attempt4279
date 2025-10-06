@@ -16,6 +16,13 @@ namespace Players
         private IMovement _movement;
         private PlayerAttributes _playerAttributes;
 
+        [Inject]
+        public void Construct(PlayerInputHandler inputHandler, PlayerAttributes playerAttributes)
+        {
+            _playerAttributes = playerAttributes;
+            _inputHandler = inputHandler;
+        }
+
         private void Start()
         {
             _movement = new CharacterControllerMovement(GetComponent<CharacterController>());
@@ -28,16 +35,7 @@ namespace Players
             animator.SetFloat(MovementSpeed, _movement.GetVelocity());
         }
 
-        [Inject]
-        public void Construct(PlayerInputHandler inputHandler, PlayerAttributes playerAttributes)
-        {
-            _playerAttributes = playerAttributes;
-            _inputHandler = inputHandler;
-        }
-
         private void OnMove(Vector2 moveInput)
-        {
-            _moveInput = moveInput;
-        }
+            => _moveInput = moveInput;
     }
 }

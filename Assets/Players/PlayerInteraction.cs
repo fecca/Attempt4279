@@ -11,12 +11,6 @@ namespace Players
         private InteractableObserver _interactableObserver;
         private InteractionActionFactory _interactionActionFactory;
 
-        private void Start()
-        {
-            _inputHandler.InteractActionTriggered += OnInteraction;
-            _interactableObserver.NewInteractableFound += OnNewInteractableFound;
-        }
-
         [Inject]
         public void Construct(PlayerInputHandler inputHandler, InteractableObserver interactableObserver,
             InteractionActionFactory interactionActionFactory)
@@ -26,10 +20,14 @@ namespace Players
             _inputHandler = inputHandler;
         }
 
-        private void OnNewInteractableFound(IInteractable interactable)
+        private void Start()
         {
-            _interactable = interactable;
+            _inputHandler.InteractActionTriggered += OnInteraction;
+            _interactableObserver.NewInteractableFound += OnNewInteractableFound;
         }
+
+        private void OnNewInteractableFound(IInteractable interactable)
+            => _interactable = interactable;
 
         private void OnInteraction()
         {

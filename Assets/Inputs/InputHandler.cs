@@ -11,30 +11,27 @@ namespace Inputs
         private UIInputHandler _uiInputHandler;
         private UI.UserInterfaceController _userInterfaceController;
 
+        [Inject]
+        public void Construct(PlayerInputHandler playerInputHandler, UIInputHandler uiInputHandler,
+            UI.UserInterfaceController userInterfaceController)
+        {
+            _userInterfaceController = userInterfaceController;
+            _playerInputHandler = playerInputHandler;
+            _uiInputHandler = uiInputHandler;
+        }
+
         private void Start()
         {
             _playerInputHandler.Initialize();
             _uiInputHandler.Initialize();
             _inputHandler = _playerInputHandler;
 
-            // _playerInputHandler.OpenMenuActionTriggered += OnUiOpened;
-            // _uiInputHandler.CloseMenuActionTriggered += OnUiClosed;
             _userInterfaceController.UiOpened += OnUserInterfaceControllerOpened;
             _userInterfaceController.UiClosed += OnUserInterfaceControllerClosed;
         }
 
         private void Update()
-        {
-            _inputHandler.Update();
-        }
-
-        [Inject]
-        public void Construct(PlayerInputHandler playerInputHandler, UIInputHandler uiInputHandler, UI.UserInterfaceController userInterfaceController)
-        {
-            _userInterfaceController = userInterfaceController;
-            _playerInputHandler = playerInputHandler;
-            _uiInputHandler = uiInputHandler;
-        }
+            => _inputHandler.Update();
 
         private void OnUserInterfaceControllerClosed()
         {

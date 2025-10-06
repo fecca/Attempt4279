@@ -19,12 +19,9 @@ namespace Enemies
         private LootSystem _lootSystem;
         private IMovement _movement;
         private PlayerObserver _playerObserver;
-        private Transform _targetPlayer;
 
         private void Awake()
-        {
-            _movement = new NavMeshAgentMovement(GetComponent<NavMeshAgent>());
-        }
+            => _movement = new NavMeshAgentMovement(GetComponent<NavMeshAgent>());
 
         private void Update()
         {
@@ -50,7 +47,6 @@ namespace Enemies
 
         private void OnPlayerSpawned(Transform targetPlayer)
         {
-            _targetPlayer = targetPlayer;
         }
 
         private Vector3 PickNewRandomPosition()
@@ -66,9 +62,7 @@ namespace Enemies
         }
 
         private void DropLoot()
-        {
-            _lootSystem.DropLoot(transform.position, lootTable.items, LootRolls);
-        }
+            => _lootSystem.DropLoot(transform.position, lootTable.items, LootRolls);
 
         [ContextMenu("kill")]
         public void Kill()

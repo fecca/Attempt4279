@@ -1,5 +1,4 @@
-﻿using Enemies;
-using Inputs;
+﻿using Inputs;
 using Interactions;
 using Loot;
 using Players;

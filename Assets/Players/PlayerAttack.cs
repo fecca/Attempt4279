@@ -14,12 +14,6 @@ namespace Players
         private PlayerInventory _playerInventory;
         private IWeapon _playerWeapon;
 
-        private void Start()
-        {
-            _inputHandler.AttackActionTriggered += OnAttackTriggered;
-            _playerInventory.ItemAdded += OnItemAdded;
-        }
-
         [Inject]
         public void Construct(IObjectResolver objectResolver, PlayerInputHandler inputHandler,
             PlayerInventory playerInventory)
@@ -29,10 +23,14 @@ namespace Players
             _playerInventory = playerInventory;
         }
 
-        private void OnAttackTriggered()
+        private void Start()
         {
-            _playerWeapon?.Attack();
+            _inputHandler.AttackActionTriggered += OnAttackTriggered;
+            _playerInventory.ItemAdded += OnItemAdded;
         }
+
+        private void OnAttackTriggered()
+            => _playerWeapon?.Attack();
 
         private void OnItemAdded(PlayerItem item)
         {

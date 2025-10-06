@@ -11,17 +11,15 @@ namespace Players
         private IObjectResolver _objectResolver;
         private PlayerObserver _playerObserver;
 
-        private void Start()
-        {
-            Spawn();
-        }
-
         [Inject]
         public void Construct(IObjectResolver objectResolver, PlayerObserver playerObserver)
         {
             _playerObserver = playerObserver;
             _objectResolver = objectResolver;
         }
+
+        private void Start()
+            => Spawn();
 
         private void Spawn()
         {

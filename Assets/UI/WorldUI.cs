@@ -16,10 +16,12 @@ namespace UI
         private InteractableObserver _interactableObserver;
         private PlayerSpawner _spawner;
 
+        [Inject]
+        public void Construct(InteractableObserver interactableObserver)
+            => _interactableObserver = interactableObserver;
+
         private void Start()
-        {
-            _interactableObserver.NewInteractableFound += OnNewInteractableFound;
-        }
+            => _interactableObserver.NewInteractableFound += OnNewInteractableFound;
 
         private void LateUpdate()
         {
@@ -27,12 +29,6 @@ namespace UI
 
             var p = camera.WorldToScreenPoint(_interactable.GetPosition());
             interactLabel.rectTransform.position = p;
-        }
-
-        [Inject]
-        public void Construct(InteractableObserver interactableObserver)
-        {
-            _interactableObserver = interactableObserver;
         }
 
         private void OnNewInteractableFound(IInteractable interactable)

@@ -20,9 +20,7 @@ namespace Loot
         }
 
         public Vector3 GetPosition()
-        {
-            return transform.position;
-        }
+            => transform.position;
 
         public void Highlight()
         {

@@ -13,18 +13,16 @@ namespace Players
         private int _number;
         private PlayerAttributes _playerAttributes;
 
+        [Inject]
+        public void Construct(PlayerAttributes playerAttributes)
+            => _playerAttributes = playerAttributes;
+
         public void Attack()
         {
             if (_isOnCooldown) return;
 
             Shoot();
             StartCoroutine(nameof(StartCooldown));
-        }
-
-        [Inject]
-        public void Construct(PlayerAttributes playerAttributes)
-        {
-            _playerAttributes = playerAttributes;
         }
 
         private void Shoot()

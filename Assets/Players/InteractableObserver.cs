@@ -9,13 +9,9 @@ namespace Players
         public event Action<IInteractable> Interacted = _ => { };
 
         public void NotifyNewInteractableFound(IInteractable interactable)
-        {
-            NewInteractableFound(interactable);
-        }
+            => NewInteractableFound(interactable);
 
         public void NotifyInteraction(IInteractable interactable)
-        {
-            Interacted(interactable);
-        }
+            => Interacted(interactable);
     }
 }

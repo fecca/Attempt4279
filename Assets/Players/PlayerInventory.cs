@@ -6,16 +6,6 @@ using UnityEngine;
 
 namespace Players
 {
-    public class PlayerCraftingRecipe
-    {
-        public readonly CraftingRecipeBlueprint Blueprint;
-
-        public PlayerCraftingRecipe(CraftingRecipeBlueprint blueprint)
-        {
-            Blueprint = blueprint;
-        }
-    }
-
     public class PlayerInventory
     {
         private readonly List<PlayerItem> _items = new();
@@ -41,8 +31,6 @@ namespace Players
                         _items.Add(playerItem);
                     }
 
-                    ItemAdded(playerItem);
-
                     Debug.Log($"Adding {playerItem.Amount} {playerItem.Blueprint.id} to the inventory");
 
                     break;
@@ -55,7 +43,7 @@ namespace Players
             }
         }
 
-        public void Remove(ItemInstance item)
+        private void Remove(ItemInstance item)
         {
             if (string.IsNullOrEmpty(item.Blueprint.id)) return;
 
@@ -72,14 +60,10 @@ namespace Players
             => items.ForEach(Remove);
 
         public List<PlayerItem> GetItems()
-        {
-            return _items;
-        }
+            => _items;
 
         public List<PlayerCraftingRecipe> GetRecipes()
-        {
-            return _craftingRecipes;
-        }
+            => _craftingRecipes;
 
         public EquipmentItemBlueprint GetWeapon()
         {

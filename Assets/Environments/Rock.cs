@@ -11,9 +11,7 @@ namespace Environments
         private Vector3 _originalScale;
 
         private void Awake()
-        {
-            _originalScale = transform.localScale;
-        }
+            => _originalScale = transform.localScale;
 
         public IInteractionResult Interact()
         {
@@ -24,19 +22,13 @@ namespace Environments
         }
 
         public Vector3 GetPosition()
-        {
-            return transform.position;
-        }
+            => transform.position;
 
         public void Highlight()
-        {
-            transform.localScale = _originalScale * 1.1f;
-        }
+            => transform.localScale = _originalScale * 1.1f;
 
         public void Unhighlight()
-        {
-            transform.localScale = _originalScale;
-        }
+            => transform.localScale = _originalScale;
 
         public string GetText()
             => "Smash";

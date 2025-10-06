@@ -8,8 +8,6 @@ namespace Items.Scripts
         public Sprite icon;
 
         public override string ToString()
-        {
-            return $"{id}";
-        }
+            => $"{id}";
     }
 }

@@ -5,7 +5,6 @@ namespace Inputs
 {
     public class UIInputHandler : IInputHandler
     {
-        private InputAction _closeMenuAction;
         private InputAction _backMenuAction;
         private InputAction _pageLeftAction;
         private InputAction _pageRightAction;
@@ -17,7 +16,6 @@ namespace Inputs
 
         public void Enable()
         {
-            _closeMenuAction.Enable();
             _backMenuAction.Enable();
             _pageLeftAction.Enable();
             _pageRightAction.Enable();
@@ -30,7 +28,6 @@ namespace Inputs
 
         public void Disable()
         {
-            _closeMenuAction.Disable();
             _backMenuAction.Disable();
             _pageLeftAction.Disable();
             _pageRightAction.Disable();
@@ -45,7 +42,6 @@ namespace Inputs
         {
             if (_pageLeftAction.triggered) PageLeftActionTriggered.Invoke();
             if (_pageRightAction.triggered) PageRightActionTriggered.Invoke();
-            if (_closeMenuAction.triggered) CloseMenuActionTriggered.Invoke();
             if (_backMenuAction.triggered) BackMenuActionTriggered.Invoke();
             if (_leftArrowAction.triggered) LeftArrowActionTriggered.Invoke();
             if (_rightArrowAction.triggered) RightArrowActionTriggered.Invoke();
@@ -54,7 +50,6 @@ namespace Inputs
             if (_submitAction.triggered) SubmitActionTriggered.Invoke();
         }
 
-        public event Action CloseMenuActionTriggered = () => { };
         public event Action BackMenuActionTriggered = () => { };
         public event Action PageLeftActionTriggered = () => { };
         public event Action PageRightActionTriggered = () => { };
@@ -66,7 +61,6 @@ namespace Inputs
 
         public void Initialize()
         {
-            _closeMenuAction = InputSystem.actions.FindAction("CloseMenu");
             _backMenuAction = InputSystem.actions.FindAction("Back");
             _pageLeftAction = InputSystem.actions.FindAction("PageLeft");
             _pageRightAction = InputSystem.actions.FindAction("PageRight");

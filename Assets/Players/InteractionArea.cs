@@ -16,15 +16,15 @@ namespace Players
         private SphereCollider _collider;
         private InteractableObserver _interactableObserver;
 
+        [Inject]
+        public void Construct(InteractableObserver interactableObserver)
+            => _interactableObserver = interactableObserver;
+
         private void Awake()
-        {
-            _collider = GetComponent<SphereCollider>();
-        }
+            => _collider = GetComponent<SphereCollider>();
 
         private void Start()
-        {
-            _interactableObserver.Interacted += OnInteracted;
-        }
+            => _interactableObserver.Interacted += OnInteracted;
 
         private void Update()
         {
@@ -68,12 +68,6 @@ namespace Players
             _closestInteractable = null;
         }
 
-        [Inject]
-        public void Construct(InteractableObserver interactableObserver)
-        {
-            _interactableObserver = interactableObserver;
-        }
-
         private IInteractable GetClosestInteractable()
         {
             return _interactables.Aggregate((curMin, x)
@@ -83,9 +77,7 @@ namespace Players
         }
 
         private float GetDistanceToInteractable(IInteractable interactable)
-        {
-            return Vector3.Distance(interactable.GetPosition(), transform.position);
-        }
+            => Vector3.Distance(interactable.GetPosition(), transform.position);
 
         private void OnInteracted(IInteractable interactable)
         {

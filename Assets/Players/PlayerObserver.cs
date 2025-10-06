@@ -8,8 +8,6 @@ namespace Players
         public event Action<Transform> PlayerSpawned = _ => { };
 
         public void NotifyPlayerSpawned(Transform playerTransform)
-        {
-            PlayerSpawned(playerTransform);
-        }
+            => PlayerSpawned(playerTransform);
     }
 }

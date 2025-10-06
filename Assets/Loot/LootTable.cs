@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Players;
 using UnityEngine;
 
 namespace Loot

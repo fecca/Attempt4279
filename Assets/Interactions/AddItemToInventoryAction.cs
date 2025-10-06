@@ -16,8 +16,6 @@ namespace Interactions
         }
 
         public void Execute()
-        {
-            _items.ForEach(item => _playerInventory.Add(item));
-        }
+            => _items.ForEach(item => _playerInventory.Add(item));
     }
 }

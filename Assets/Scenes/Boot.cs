@@ -8,18 +8,9 @@ namespace Scenes
     public class Boot : MonoBehaviour
     {
         private void Start()
-        {
-            SetUpServices();
-            LoadMainSceneAsync().Forget();
-        }
-
-        private static void SetUpServices()
-        {
-        }
+            => LoadMainSceneAsync().Forget();
 
         private static async Task LoadMainSceneAsync()
-        {
-            await SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
-        }
+            => await SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
     }
 }
